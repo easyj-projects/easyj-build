@@ -25,6 +25,9 @@
 		<!-- Webs version -->
 		<servlet-api.version>4.0.1</servlet-api.version>
 
+		<!-- Spring version -->
+		<spring-framework.version>5.2.15.RELEASE</spring-framework.version>
+
 		<!-- Lombok version -->
 		<lombok.version>1.18.20</lombok.version>
 
@@ -62,6 +65,15 @@
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
 				<version>${servlet-api.version}</version>
+			</dependency>
+
+			<!-- 依赖定义：Spring -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>${spring-framework.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
 
 			<!-- 依赖定义：Lombok -->
