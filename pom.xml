@@ -105,4 +105,32 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<!-- 资源仓库管理 -->
+	<repositories>
+		<repository>
+			<id>kt-nexus</id>
+			<name>kt-nexus</name>
+			<url>http://www.kingtsoft.com:33084/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<!--资源上传管理-->
+	<distributionManagement>
+		<repository>
+			<id>kt-nexus-releases</id>
+			<url>http://www.kingtsoft.com:33084/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>kt-nexus-snapshots</id>
+			<url>http://www.kingtsoft.com:33084/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
