@@ -131,6 +131,12 @@
 					<artifactId>maven-shade-plugin</artifactId>
 					<version>${maven-shade-plugin.version}</version>
 				</plugin>
+				<!-- 插件定义：Cobertura 测试覆盖度 -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>cobertura-maven-plugin</artifactId>
+					<version>${cobertura-maven-plugin.version}</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 
@@ -170,6 +176,18 @@
 			<id>release</id>
 			<build>
 				<plugins>
+					<!-- 使用插件：Cobertura 测试覆盖度 -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>cobertura-maven-plugin</artifactId>
+						<configuration>
+							<formats>
+								<format>html</format>
+								<format>xml</format>
+							</formats>
+							<check />
+						</configuration>
+					</plugin>
 					<!-- 使用插件：Source -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
