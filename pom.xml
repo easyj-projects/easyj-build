@@ -8,7 +8,7 @@
 	<artifactId>easyjava-build-parent</artifactId>
 	<version>${revision}</version>
 	<packaging>pom</packaging>
-	<name>parent</name>
+	<name>Parent</name>
 	<url>https://gitee.com/easyjava-projects/easyjava-build</url>
 
 	<properties>
