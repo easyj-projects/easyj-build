@@ -10,8 +10,9 @@
 		<relativePath>../dependencies/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>easyjava-parent</artifactId>
+	<artifactId>easyjava-build-parent</artifactId>
 	<packaging>pom</packaging>
+	<name>parent</name>
 
 	<properties>
 		<!-- 编译配置 -->
