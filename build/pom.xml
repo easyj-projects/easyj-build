@@ -10,12 +10,13 @@
 		<relativePath>../dependencies/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>easyjava-build-parent</artifactId>
+	<artifactId>easyjava-build</artifactId>
 	<packaging>pom</packaging>
-	<name>parent</name>
+	<name>build</name>
 
+	<!-- 属性配置 -->
 	<properties>
-		<!-- 编译配置 -->
+		<!-- 编译属性 -->
 		<java.version>1.8</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
@@ -30,6 +31,52 @@
 		<maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
 	</properties>
 
+	<!-- 引用依赖 -->
+	<dependencies>
+		<!-- 引用依赖：Lombok，用于测试环境 -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- 引用依赖：Tests -->
+		<!-- org.junit -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-params</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-launcher</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- org.mockito -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- org.assertj -->
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<!-- 项目构建 -->
 	<build>
 		<!-- 插件管理 -->
 		<pluginManagement>

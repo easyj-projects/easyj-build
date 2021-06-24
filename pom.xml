@@ -5,10 +5,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.easyframework</groupId>
-	<artifactId>easyjava-build</artifactId>
+	<artifactId>easyjava-build-parent</artifactId>
 	<version>${revision}</version>
 	<packaging>pom</packaging>
-	<name>project</name>
+	<name>parent</name>
 
 	<properties>
 		<!-- 项目版本 -->
@@ -20,7 +20,7 @@
 
 	<modules>
 		<module>dependencies</module>
-		<module>parent</module>
+		<module>build</module>
 	</modules>
 
 	<inceptionYear>2021</inceptionYear>
@@ -32,6 +32,11 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+
+	<organization>
+		<name>王良组织的开源项目</name>
+		<url>https://gitee.com/easyjava-projects</url>
+	</organization>
 
 	<developers>
 		<developer>
@@ -46,11 +51,6 @@
 			</roles>
 		</developer>
 	</developers>
-
-	<organization>
-		<name>王良组织的开源项目</name>
-		<url>https://gitee.com/easyjava-projects</url>
-	</organization>
 
 	<scm>
 		<url>https://gitee.com/easyjava-projects/easyjava-build</url>
