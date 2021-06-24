@@ -27,6 +27,7 @@
 		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 		<maven-source-plugin.version>3.2.1</maven-source-plugin.version>
 		<maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+		<maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
 	</properties>
 
 	<build>
@@ -76,6 +77,12 @@
 							</goals>
 						</execution>
 					</executions>
+				</plugin>
+				<!-- 插件定义：Shade -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-shade-plugin</artifactId>
+					<version>${maven-shade-plugin.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
