@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.easyframework</groupId>
+	<artifactId>easyjava-build</artifactId>
+	<version>${revision}</version>
+	<packaging>pom</packaging>
+	<name>project</name>
+
+	<properties>
+		<!-- 项目版本 -->
+		<revision>0.1.0-SNAPSHOT</revision>
+
+		<!-- Maven插件版本  -->
+		<flatten-maven-plugin.version>1.2.7</flatten-maven-plugin.version>
+	</properties>
+
+	<modules>
+		<module>dependencies</module>
+		<module>parent</module>
+	</modules>
+
+	<inceptionYear>2021</inceptionYear>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>wangliang181230</id>
+			<name>王良</name>
+			<url>https://gitee.com/wangliang181230</url>
+			<email>841369634@qq.com</email>
+			<organization>浙江蕙康科技有限公司</organization>
+			<organizationUrl>https://www.jyhk.com</organizationUrl>
+			<roles>
+				<role>Java架构师</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<organization>
+		<name>王良-个人开源项目</name>
+		<url>https://gitee.com/wangliang181230</url>
+	</organization>
+
+	<scm>
+		<url>https://gitee.com/easyjava-projects/easyjava-build</url>
+		<connection>scm:git@gitee.com:easyjava-projects/easyjava-build.git</connection>
+		<developerConnection>scm:git@gitee.com:easyjava-projects/easyjava-build.git</developerConnection>
+	</scm>
+
+	<issueManagement>
+		<system>gitee</system>
+		<url>https://gitee.com/easyjava-projects/easyjava-build/issues</url>
+	</issueManagement>
+
+	<build>
+		<!-- 插件管理 -->
+		<pluginManagement>
+			<plugins>
+				<!-- 插件定义：Flatten -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>flatten-maven-plugin</artifactId>
+					<version>${flatten-maven-plugin.version}</version>
+					<configuration>
+						<updatePomFile>true</updatePomFile>
+						<flattenMode>resolveCiFriendliesOnly</flattenMode>
+					</configuration>
+					<executions>
+						<execution>
+							<id>flatten</id>
+							<phase>process-resources</phase>
+							<goals>
+								<goal>flatten</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>flatten.clean</id>
+							<phase>clean</phase>
+							<goals>
+								<goal>clean</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<!-- 使用插件 -->
+		<plugins>
+			<!-- 使用插件：Flatten -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>

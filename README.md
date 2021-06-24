@@ -1,26 +1,25 @@
 # easyjava-build
 
-#### 介绍
+### 介绍
 为了方便其他项目的搭建，此仓库提供一组方便构建项目的父级pom.xml。
-同时，提供一个easyjava-projects的所有依赖的BOM。
 
-#### 软件架构
+### 软件架构
 软件架构说明
 
 
-#### 安装教程
+### 安装教程
 
 1.  xxxx
 2.  xxxx
 3.  xxxx
 
-#### 使用说明
+### 使用说明
 
 1.  xxxx
 2.  xxxx
 3.  xxxx
 
-#### 参与贡献
+### 参与贡献
 
 1.  Fork 本仓库
 2.  新建 Feat_xxx 分支
@@ -28,7 +27,7 @@
 4.  新建 Pull Request
 
 
-#### 特技
+### 特技
 
 1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
 2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
