@@ -12,7 +12,7 @@
 
 ### 运行环境
 
-- EasyJava版本：
+- easyj-build版本：
 - JDK版本：
 - 操作系统：
 - 其他：

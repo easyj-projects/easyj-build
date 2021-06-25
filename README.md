@@ -1,4 +1,4 @@
-# easyjava-build
+# easyj-build
 
 ### 介绍
 为了方便其他项目的搭建，此仓库提供一组方便构建项目的父级pom.xml。
