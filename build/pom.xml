@@ -137,6 +137,13 @@
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>cobertura-maven-plugin</artifactId>
 					<version>${cobertura-maven-plugin.version}</version>
+					<configuration>
+						<formats>
+							<format>html</format>
+							<format>xml</format>
+						</formats>
+						<check/>
+					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -181,13 +188,6 @@
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>cobertura-maven-plugin</artifactId>
-						<configuration>
-							<formats>
-								<format>html</format>
-								<format>xml</format>
-							</formats>
-							<check />
-						</configuration>
 					</plugin>
 					<!-- 使用插件：Source -->
 					<plugin>
