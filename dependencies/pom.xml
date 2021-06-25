@@ -28,6 +28,9 @@
 		<!-- Spring version -->
 		<spring-framework.version>5.2.15.RELEASE</spring-framework.version>
 
+		<!-- AOP -->
+		<aspectj.version>1.9.6</aspectj.version>
+
 		<!-- Lombok version -->
 		<lombok.version>1.18.20</lombok.version>
 
@@ -74,6 +77,13 @@
 				<version>${spring-framework.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
+			</dependency>
+
+			<!-- 依赖定义：AOP-->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${aspectj.version}</version>
 			</dependency>
 
 			<!-- 依赖定义：Lombok -->
