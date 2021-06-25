@@ -20,6 +20,7 @@
 		<findbugs.jsr305.version>3.0.2</findbugs.jsr305.version>
 
 		<!-- Tools version -->
+		<commons-lang3.version>3.10</commons-lang3.version>
 		<hutool.version>5.7.2</hutool.version>
 
 		<!-- Webs version -->
@@ -57,6 +58,11 @@
 			</dependency>
 
 			<!-- 依赖定义：Tools -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>cn.hutool</groupId>
 				<artifactId>hutool-all</artifactId>
