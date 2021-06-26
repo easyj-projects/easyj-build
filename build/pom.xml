@@ -80,8 +80,9 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<configuration>
 						<!--
-						编译时，添加 '-parameters' 编译参数，方法参数名将可以通过反射获取到，
-						否则反射获取到的方法参数名会变成 [arg1, arg2, ..., argN]
+						配置为true后，编译时，将会添加 '-parameters' 编译参数，方法参数名将可以通过反射获取到；
+						否则，反射获取到的方法参数名会变成 [arg1, arg2, ..., argN]。
+						建议业务系统开发时，将此配置设置为true。
 						-->
 						<parameters>true</parameters>
 
