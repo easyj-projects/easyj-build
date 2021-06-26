@@ -79,7 +79,12 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<configuration>
+						<!--
+						编译时，添加 '-parameters' 编译参数，方法参数名将可以通过反射获取到，
+						否则反射获取到的方法参数名会变成 [arg1, arg2, ..., argN]
+						-->
 						<parameters>true</parameters>
+
 						<source>${maven.compiler.source}</source>
 						<target>${maven.compiler.target}</target>
 					</configuration>
