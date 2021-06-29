@@ -23,8 +23,12 @@
 		<commons-lang3.version>3.10</commons-lang3.version>
 		<hutool.version>5.7.2</hutool.version>
 
-		<!-- Offices version -->
-		<apache-poi.version>5.0.0</apache-poi.version><!-- excel -->
+		<!-- BouncyCastle -->
+		<bouncycastle.version>1.69</bouncycastle.version>
+
+		<!-- POI version -->
+		<apache-poi.version>5.0.0</apache-poi.version>
+		<afterturn-easypoi.version>4.4.0</afterturn-easypoi.version>
 
 		<!-- Spring version -->
 		<spring-boot.version>2.5.2</spring-boot.version>
@@ -83,8 +87,15 @@
 				<version>${hutool.version}</version>
 			</dependency>
 
-			<!-- 依赖定义：Offices -->
-			<!-- excel -->
+			<!-- 依赖定义：BouncyCastle -->
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcprov-jdk15on</artifactId>
+				<version>${bouncycastle.version}</version>
+			</dependency>
+
+			<!-- 依赖定义：POI -->
+			<!-- apache-poi -->
 			<dependency>
 				<groupId>org.apache.poi</groupId>
 				<artifactId>poi</artifactId>
@@ -94,6 +105,12 @@
 				<groupId>org.apache.poi</groupId>
 				<artifactId>poi-ooxml</artifactId>
 				<version>${apache-poi.version}</version>
+			</dependency>
+			<!-- afterturn-easypoi -->
+			<dependency>
+				<groupId>cn.afterturn</groupId>
+				<artifactId>easypoi-spring-boot-starter</artifactId>
+				<version>${afterturn-easypoi.version}</version>
 			</dependency>
 
 			<!-- 依赖定义：Spring -->
