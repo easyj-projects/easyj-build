@@ -5,30 +5,13 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>icu.easyj</groupId>
-	<artifactId>easyj-build-parent</artifactId>
-	<version>${revision}</version>
+	<artifactId>easyj-build</artifactId>
+	<version>0.1.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Parent</name>
-	<description>为了方便其他Java仓库的搭建，此仓库提供一组方便构建项目的父级pom.xml。</description>
+
+	<name>build</name>
+	<description>为了方便其他Java仓库的搭建，此仓库提供build的pom.xml，作为其他项目的父级pom.xml。</description>
 	<url>https://gitee.com/easyj-projects/easyj-build</url>
-
-	<properties>
-		<!-- 项目版本 -->
-		<revision>0.1.1-SNAPSHOT</revision>
-
-		<!-- Maven插件版本 -->
-		<!-- Apache -->
-		<maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-		<maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
-		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
-		<!-- Other -->
-		<flatten-maven-plugin.version>1.2.7</flatten-maven-plugin.version>
-	</properties>
-
-	<modules>
-		<module>dependencies</module>
-		<module>build</module>
-	</modules>
 
 	<inceptionYear>2021</inceptionYear>
 
@@ -41,7 +24,7 @@
 	</licenses>
 
 	<organization>
-		<name>EasyJ开源项目组</name>
+		<name>EasyJ开源社区</name>
 		<url>https://gitee.com/easyj-projects</url>
 	</organization>
 
@@ -63,7 +46,6 @@
 		<url>https://gitee.com/easyj-projects/easyj-build</url>
 		<connection>scm:git@gitee.com:easyj-projects/easyj-build.git</connection>
 		<developerConnection>scm:git@gitee.com:easyj-projects/easyj-build.git</developerConnection>
-		<tag>HEAD</tag>
 	</scm>
 
 	<issueManagement>
@@ -71,10 +53,69 @@
 		<url>https://gitee.com/easyj-projects/easyj-build/issues</url>
 	</issueManagement>
 
+	<modules>
+		<module>dependencies</module>
+	</modules>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<resource.delimiter>@</resource.delimiter>
+
+
+		<!-- Maven plugins version -->
+		<!-- Apache -->
+		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+		<maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+		<maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+		<maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+		<maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
+		<!-- Other -->
+		<cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
+		<flatten-maven-plugin.version>1.2.7</flatten-maven-plugin.version>
+	</properties>
+
 	<build>
-		<!-- 插件管理 -->
 		<pluginManagement>
 			<plugins>
+				<!-- 插件定义：Compiler -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+					<configuration>
+						<parameters>true</parameters>
+						<source>${maven.compiler.source}</source>
+						<target>${maven.compiler.target}</target>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
+				</plugin>
+				<!-- 插件定义：Resources -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${maven-resources-plugin.version}</version>
+					<configuration>
+						<encoding>${project.build.sourceEncoding}</encoding>
+						<propertiesEncoding>${project.build.sourceEncoding}</propertiesEncoding>
+						<delimiters>
+							<delimiter>${resource.delimiter}</delimiter>
+						</delimiters>
+						<useDefaultDelimiters>false</useDefaultDelimiters>
+					</configuration>
+				</plugin>
+				<!-- 插件定义：Surefire -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven-surefire-plugin.version}</version>
+				</plugin>
 				<!-- 插件定义：Source -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -96,9 +137,9 @@
 					<version>${maven-javadoc-plugin.version}</version>
 					<configuration>
 						<failOnError>false</failOnError>
-						<charset>UTF-8</charset>
-						<encoding>UTF-8</encoding>
-						<docencoding>UTF-8</docencoding>
+						<charset>${project.build.sourceEncoding}</charset>
+						<encoding>${project.build.sourceEncoding}</encoding>
+						<docencoding>${project.build.sourceEncoding}</docencoding>
 					</configuration>
 					<executions>
 						<execution>
@@ -109,6 +150,25 @@
 							</goals>
 						</execution>
 					</executions>
+				</plugin>
+				<!-- 插件定义：Shade -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-shade-plugin</artifactId>
+					<version>${maven-shade-plugin.version}</version>
+				</plugin>
+				<!-- 插件定义：Cobertura 测试覆盖度 -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>cobertura-maven-plugin</artifactId>
+					<version>${cobertura-maven-plugin.version}</version>
+					<configuration>
+						<formats>
+							<format>html</format>
+							<format>xml</format>
+						</formats>
+						<check/>
+					</configuration>
 				</plugin>
 				<!-- 插件定义：Deploy -->
 				<plugin>
@@ -144,29 +204,81 @@
 			</plugins>
 		</pluginManagement>
 
-		<!-- 使用插件 -->
 		<plugins>
+			<!-- 使用插件：Compiler -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<!-- 使用插件：Resources -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+			</plugin>
+			<!-- 使用插件：Surefire -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+			</plugin>
 			<!-- 使用插件：Deploy -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-deploy-plugin</artifactId>
 			</plugin>
-			<!-- 使用插件：Flatten -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>flatten-maven-plugin</artifactId>
-				<configuration>
-					<flattenMode>resolveCiFriendliesOnly</flattenMode>
-				</configuration>
-			</plugin>
 		</plugins>
+
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>${basedir}/src/main/webapp</directory>
+			</resource>
+		</resources>
 	</build>
 
-	<!-- Profiles -->
 	<profiles>
-		<!-- KT-Nexus 配置 -->
+		<!-- profile: Check -->
+		<profile>
+			<id>check</id>
+			<build>
+				<plugins>
+					<!-- 使用插件：Javadoc -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+					</plugin>
+					<!-- 使用插件：Cobertura 测试覆盖度 -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>cobertura-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- profile: Release -->
 		<profile>
 			<id>release</id>
+			<build>
+				<plugins>
+					<!-- 使用插件：Source -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+					</plugin>
+					<!-- 使用插件：Javadoc -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+					</plugin>
+					<!-- 使用插件：Cobertura 测试覆盖度 -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>cobertura-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
 			<!--资源上传管理-->
 			<distributionManagement>
 				<repository>
@@ -179,7 +291,8 @@
 				</snapshotRepository>
 			</distributionManagement>
 		</profile>
-		<!-- OSSRH 配置 -->
+
+		<!-- profile: OSSRH-Release -->
 		<profile>
 			<id>ossrh-release</id>
 			<build>
@@ -194,7 +307,7 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
 					</plugin>
-					<!-- 使用插件：GPG -->
+					<!-- 使用插件：Nexus-Staging -->
 					<plugin>
 						<groupId>org.sonatype.plugins</groupId>
 						<artifactId>nexus-staging-maven-plugin</artifactId>
@@ -206,6 +319,7 @@
 							<autoReleaseAfterClose>false</autoReleaseAfterClose>
 						</configuration>
 					</plugin>
+					<!-- 使用插件：GPG -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
