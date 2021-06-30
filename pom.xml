@@ -14,7 +14,7 @@
 
 	<properties>
 		<!-- 项目版本 -->
-		<revision>0.1.0</revision>
+		<revision>0.1.1-SNAPSHOT</revision>
 
 		<!-- Maven插件版本 -->
 		<!-- Apache -->
