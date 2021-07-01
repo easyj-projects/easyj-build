@@ -6,11 +6,11 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<packaging>pom</packaging>
 
-	<name>build</name>
-	<description>为了方便其他Java仓库的搭建，提供了此`pom.xml`，作为其他项目的父级`pom.xml`。</description>
+	<name>easyj-build</name>
+	<description>为了方便其他Java仓库的搭建，提供了该build，作为其他项目的父级`pom.xml`。</description>
 	<url>https://gitee.com/easyj-projects/easyj-build</url>
 
 	<inceptionYear>2021</inceptionYear>
