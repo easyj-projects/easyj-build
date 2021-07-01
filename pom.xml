@@ -6,11 +6,11 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>0.1.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>pom</packaging>
 
 	<name>build</name>
-	<description>为了方便其他Java仓库的搭建，此仓库提供build的pom.xml，作为其他项目的父级pom.xml。</description>
+	<description>为了方便其他Java仓库的搭建，提供了此`pom.xml`，作为其他项目的父级`pom.xml`。</description>
 	<url>https://gitee.com/easyj-projects/easyj-build</url>
 
 	<inceptionYear>2021</inceptionYear>
@@ -53,10 +53,6 @@
 		<url>https://gitee.com/easyj-projects/easyj-build/issues</url>
 	</issueManagement>
 
-	<modules>
-		<module>dependencies</module>
-	</modules>
-
 	<properties>
 		<java.version>1.8</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
@@ -76,6 +72,9 @@
 		<maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
 		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
 		<maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
+		<!-- GPG -->
+		<nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
+		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 		<!-- Other -->
 		<cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
 		<flatten-maven-plugin.version>1.2.7</flatten-maven-plugin.version>
@@ -311,7 +310,7 @@
 					<plugin>
 						<groupId>org.sonatype.plugins</groupId>
 						<artifactId>nexus-staging-maven-plugin</artifactId>
-						<version>1.6.8</version>
+						<version>${nexus-staging-maven-plugin.version}</version>
 						<extensions>true</extensions>
 						<configuration>
 							<serverId>ossrh-easyj-release</serverId>
@@ -323,7 +322,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.6</version>
+						<version>${maven-gpg-plugin.version}</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
