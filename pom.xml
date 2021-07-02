@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.7</version>
+	<version>1.0.8</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -56,6 +56,15 @@
 	<build>
 		<pluginManagement>
 			<plugins>
+				<!-- 插件定义：Clean -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>3.1.0</version>
+					<configuration>
+						<failOnError>false</failOnError>
+					</configuration>
+				</plugin>
 				<!-- 插件定义：Compiler -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
