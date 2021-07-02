@@ -6,11 +6,11 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.5</version>
+	<version>1.0.6</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
-	<description>为了方便其他Java仓库的搭建，提供了该build，作为其他项目的父级`pom.xml`。</description>
+	<description>为了方便其他Java项目的搭建，提供了该build，作为其他项目的父级`pom.xml`。</description>
 	<url>https://gitee.com/easyj-projects/easyj-build</url>
 
 	<inceptionYear>2021</inceptionYear>
@@ -23,7 +23,7 @@
 	<licenses>
 		<license>
 			<name>Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
