@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.4</version>
+	<version>1.0.5</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -229,9 +229,9 @@
 			</build>
 		</profile>
 
-		<!-- profile: Release -->
+		<!-- profile: Release-KT -->
 		<profile>
-			<id>release</id>
+			<id>release-kt</id>
 			<build>
 				<plugins>
 					<!-- 使用插件：Source -->
@@ -264,9 +264,9 @@
 			</distributionManagement>
 		</profile>
 
-		<!-- profile: OSSRH-Release -->
+		<!-- profile: Release-OSSRH -->
 		<profile>
-			<id>ossrh-release</id>
+			<id>release-ossrh</id>
 			<build>
 				<plugins>
 					<!-- 使用插件：Source -->
