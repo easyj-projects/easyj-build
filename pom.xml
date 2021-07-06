@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.9</version>
+	<version>1.0.10-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -227,8 +227,7 @@
 							<phase>validate</phase>
 							<configuration>
 								<configLocation>${user.dir}/src/checkstyle/checkstyle.xml</configLocation>
-								<suppressionsLocation>${user.dir}/src/checkstyle/checkstyle-suppressions.xml
-								</suppressionsLocation>
+								<suppressionsLocation>${user.dir}/src/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
 								<encoding>UTF-8</encoding>
 								<consoleOutput>true</consoleOutput>
 								<failsOnError>true</failsOnError>
