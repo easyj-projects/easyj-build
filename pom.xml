@@ -152,6 +152,26 @@
 						<check/>
 					</configuration>
 				</plugin>
+				<!-- 插件定义：JaCoCo 测试覆盖度 -->
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.8.7</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>report</id>
+							<phase>test</phase>
+							<goals>
+								<goal>report</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
 				<!-- 插件定义：Deploy -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -318,6 +338,44 @@
 								</configuration>
 							</execution>
 						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- profile: CI/CD -->
+		<profile>
+			<id>cicd</id>
+			<build>
+				<plugins>
+					<!-- 使用插件：Checkstyle -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-checkstyle-plugin</artifactId>
+						<executions>
+							<execution>
+								<configuration>
+									<failsOnError>true</failsOnError>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- 使用插件：Javadoc -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<configuration>
+									<failsOnError>true</failsOnError>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- 使用插件：JaCoCo -->
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
 					</plugin>
 				</plugins>
 			</build>
