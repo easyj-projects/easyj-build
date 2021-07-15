@@ -71,6 +71,7 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.8.1</version>
 					<configuration>
+						<!-- 编译后保留原方法或构造函数参数名 -->
 						<parameters>true</parameters>
 						<source>1.8</source>
 						<target>1.8</target>
@@ -230,7 +231,7 @@
 								<suppressionsLocation>${user.dir}/src/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
 								<encoding>UTF-8</encoding>
 								<consoleOutput>true</consoleOutput>
-								<failsOnError>true</failsOnError>
+								<failsOnError>false</failsOnError>
 							</configuration>
 							<goals>
 								<goal>checkstyle</goal>
@@ -298,11 +299,25 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-checkstyle-plugin</artifactId>
+						<executions>
+							<execution>
+								<configuration>
+									<failsOnError>true</failsOnError>
+								</configuration>
+							</execution>
+						</executions>
 					</plugin>
 					<!-- 使用插件：Javadoc -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<configuration>
+									<failsOnError>true</failsOnError>
+								</configuration>
+							</execution>
+						</executions>
 					</plugin>
 				</plugins>
 			</build>
@@ -317,6 +332,13 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-checkstyle-plugin</artifactId>
+						<executions>
+							<execution>
+								<configuration>
+									<failsOnError>true</failsOnError>
+								</configuration>
+							</execution>
+						</executions>
 					</plugin>
 					<!-- 使用插件：Source -->
 					<plugin>
@@ -327,11 +349,13 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
-					</plugin>
-					<!-- 使用插件：Cobertura 测试覆盖度 -->
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>cobertura-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<configuration>
+									<failOnError>true</failOnError>
+								</configuration>
+							</execution>
+						</executions>
 					</plugin>
 				</plugins>
 			</build>
@@ -357,6 +381,13 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-checkstyle-plugin</artifactId>
+						<executions>
+							<execution>
+								<configuration>
+									<failsOnError>true</failsOnError>
+								</configuration>
+							</execution>
+						</executions>
 					</plugin>
 					<!-- 使用插件：Source -->
 					<plugin>
@@ -367,6 +398,13 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<configuration>
+									<failsOnError>true</failsOnError>
+								</configuration>
+							</execution>
+						</executions>
 					</plugin>
 					<!-- 使用插件：Nexus-Staging -->
 					<plugin>
