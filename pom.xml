@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.13</version>
+	<version>1.0.14</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -382,13 +382,6 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-checkstyle-plugin</artifactId>
-						<executions>
-							<execution>
-								<configuration>
-									<failsOnError>true</failsOnError>
-								</configuration>
-							</execution>
-						</executions>
 					</plugin>
 					<!-- 使用插件：Source -->
 					<plugin>
@@ -399,9 +392,6 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
-						<configuration>
-							<failOnError>true</failOnError>
-						</configuration>
 					</plugin>
 				</plugins>
 			</build>
