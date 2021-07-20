@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.12</version>
+	<version>1.0.13</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -331,13 +331,9 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
-						<executions>
-							<execution>
-								<configuration>
-									<failOnError>true</failOnError>
-								</configuration>
-							</execution>
-						</executions>
+						<configuration>
+							<failOnError>true</failOnError>
+						</configuration>
 					</plugin>
 				</plugins>
 			</build>
@@ -364,13 +360,9 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
-						<executions>
-							<execution>
-								<configuration>
-									<failOnError>true</failOnError>
-								</configuration>
-							</execution>
-						</executions>
+						<configuration>
+							<failOnError>true</failOnError>
+						</configuration>
 					</plugin>
 					<!-- 使用插件：JaCoCo -->
 					<plugin>
@@ -407,13 +399,9 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
-						<executions>
-							<execution>
-								<configuration>
-									<failOnError>true</failOnError>
-								</configuration>
-							</execution>
-						</executions>
+						<configuration>
+							<failOnError>true</failOnError>
+						</configuration>
 					</plugin>
 				</plugins>
 			</build>
