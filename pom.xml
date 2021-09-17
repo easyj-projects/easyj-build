@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.17</version>
+	<version>1.0.18</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -172,6 +172,7 @@
 						<charset>UTF-8</charset>
 						<encoding>UTF-8</encoding>
 						<docencoding>UTF-8</docencoding>
+						<quiet>true</quiet>
 					</configuration>
 					<executions>
 						<execution>
@@ -484,13 +485,9 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
-						<executions>
-							<execution>
-								<configuration>
-									<failOnError>true</failOnError>
-								</configuration>
-							</execution>
-						</executions>
+						<configuration>
+							<failOnError>true</failOnError>
+						</configuration>
 					</plugin>
 					<!-- 使用插件：Nexus-Staging -->
 					<plugin>
