@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.19</version>
+	<version>1.0.20</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -424,6 +424,46 @@
 			</build>
 		</profile>
 
+		<!-- profile: api-doc -->
+		<profile>
+			<id>api-doc</id>
+			<build>
+				<plugins>
+					<!-- 使用插件：Javadoc -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<configuration>
+							<failOnError>false</failOnError>
+						</configuration>
+					</plugin>
+					<!-- 跳过插件：Checkstyle -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-checkstyle-plugin</artifactId>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+						<executions>
+							<execution>
+								<configuration>
+									<failsOnError>false</failsOnError>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- 跳过插件：Surefire -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
 		<!-- profile: Release-KT -->
 		<profile>
 			<id>release-kt</id>
@@ -532,7 +572,7 @@
 						<version>1.6.8</version>
 						<extensions>true</extensions>
 						<configuration>
-							<serverId>ossrh-easyj-release</serverId>
+							<serverId>ossrh-easyj-releases</serverId>
 							<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
 							<autoReleaseAfterClose>false</autoReleaseAfterClose>
 						</configuration>
