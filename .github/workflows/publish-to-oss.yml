@@ -30,7 +30,7 @@ jobs:
 
       # 3. 发布到Maven中央仓库
       - name: Publish to OSS
-        uses: samuelmeuli/action-maven-publish@v1.4.0
+        uses: samuelmeuli/action-maven-publish@v1
         with:
           server_id: sonatype-nexus-staging
           nexus_username:  ${{ secrets.OSSRH_USER }}
