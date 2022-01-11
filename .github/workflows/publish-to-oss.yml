@@ -23,6 +23,10 @@ jobs:
           distribution: 'zulu'
           java-version: 8
           server-id: sonatype-nexus-staging
+          server-username: ${{ secrets.OSSRH_USER }}
+          server-password: ${{ secrets.OSSRH_PASSWORD }}
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase:  ${{ secrets.GPG_PASSPHRASE }}
 
       # 3. 发布到Maven中央仓库
       - name: Publish to OSS
@@ -34,4 +38,4 @@ jobs:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg_passphrase:  ${{ secrets.GPG_PASSPHRASE }}
           maven_profiles: release-ossrh
-          maven_goals_phases: clean deploy -e -Dmaven.gpg.passphrase=${{ secrets.GPG_PASSPHRASE }} -Dmaven.gpg.secretKeyring=${{ secrets.GPG_PASSPHRASE }}
+          maven_goals_phases: clean deploy -e
