@@ -32,10 +32,9 @@ jobs:
       - name: Publish to OSS
         uses: samuelmeuli/action-maven-publish@v1.4.0
         with:
-          server_id: sonatype-nexus-staging
           nexus_username:  ${{ secrets.OSSRH_USER }}
           nexus_password:  ${{ secrets.OSSRH_PASSWORD }}
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg_passphrase:  ${{ secrets.GPG_PASSPHRASE }}
-          maven_profiles: release-ossrh
           maven_goals_phases: clean deploy -e
+          maven_profiles: release-ossrh

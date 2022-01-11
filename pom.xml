@@ -74,7 +74,6 @@
 		<maven.license.strictCheck>true</maven.license.strictCheck>
 		<maven.dependency-check.skip>true</maven.dependency-check.skip>
 		<maven.dependency-check.autoUpdate>true</maven.dependency-check.autoUpdate>
-		<maven.gpg.passphraseServerId>sonatype-nexus-staging</maven.gpg.passphraseServerId>
 	</properties>
 
 	<url>https://gitee.com/easyj-projects/easyj-build</url>
@@ -666,7 +665,6 @@
 									<goal>sign</goal>
 								</goals>
 								<configuration>
-									<passphraseServerId>${maven.gpg.passphraseServerId}</passphraseServerId>
 									<gpgArguments>
 										<arg>--pinentry-mode</arg>
 										<arg>loopback</arg>
@@ -680,11 +678,13 @@
 			<!-- OSSRH上传地址配置 -->
 			<distributionManagement>
 				<repository>
-					<id>ossrh-easyj-releases</id>
+					<id>ossrh</id>
+					<name>Nexus Release Repository</name>
 					<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 				</repository>
 				<snapshotRepository>
-					<id>ossrh-easyj-snapshots</id>
+					<id>sonatype-nexus-snapshots</id>
+					<name>Nexus Snapshot Repository</name>
 					<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
 				</snapshotRepository>
 			</distributionManagement>
