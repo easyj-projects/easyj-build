@@ -2,7 +2,7 @@ name: "Publish To OSS"
 
 on:
   push:
-    branches: [ develop, master ]
+    branches: [ master ]
 
 # 定义一个发行任务
 jobs:
@@ -22,7 +22,7 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 8
-          server-id: sonatype-nexus-staging
+          server-id: ossrh
           server-username: ${{ secrets.OSSRH_USER }}
           server-password: ${{ secrets.OSSRH_PASSWORD }}
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
@@ -32,6 +32,7 @@ jobs:
       - name: Publish to OSS
         uses: samuelmeuli/action-maven-publish@v1.4.0
         with:
+          server_id: ossrh
           nexus_username:  ${{ secrets.OSSRH_USER }}
           nexus_password:  ${{ secrets.OSSRH_PASSWORD }}
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
