@@ -665,6 +665,7 @@
 									<goal>sign</goal>
 								</goals>
 								<configuration>
+									<keyname>A8FE5A54D8930774EE647F4A9F50958FB0B1CD9D</keyname>
 									<gpgArguments>
 										<arg>--pinentry-mode</arg>
 										<arg>loopback</arg>
