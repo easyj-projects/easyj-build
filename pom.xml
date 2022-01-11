@@ -75,6 +75,8 @@
 		<maven.dependency-check.skip>true</maven.dependency-check.skip>
 		<maven.dependency-check.autoUpdate>true</maven.dependency-check.autoUpdate>
 		<maven.gpg.keyname></maven.gpg.keyname>
+		<maven.gpg.passphrase></maven.gpg.passphrase>
+		<maven.gpg.passphraseServerId></maven.gpg.passphraseServerId>
 	</properties>
 
 	<url>https://gitee.com/easyj-projects/easyj-build</url>
@@ -667,6 +669,8 @@
 								</goals>
 								<configuration>
 									<keyname>${maven.gpg.keyname}</keyname>
+									<passphrase>${maven.gpg.passphrase}</passphrase>
+									<passphraseServerId>${maven.gpg.passphraseServerId}</passphraseServerId>
 								</configuration>
 							</execution>
 						</executions>
