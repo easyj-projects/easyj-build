@@ -22,21 +22,14 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 8
-          server-id: ossrh
-          server-username: ${{ secrets.OSSRH_USER }}
-          server-password: ${{ secrets.OSSRH_PASSWORD }}
-          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-          gpg-passphrase:  ${{ secrets.GPG_PASSPHRASE }}
-          settings-path: /home/runner/work/_actions/samuelmeuli/action-maven-publish/v1.4.0
 
       # 3. 发布到Maven中央仓库
       - name: Publish to OSS
-        uses: samuelmeuli/action-maven-publish@v1.4.0
+        uses: samuelmeuli/action-maven-publish@v1
         with:
-          server_id: ossrh
-          nexus_username:  ${{ secrets.OSSRH_USER }}
-          nexus_password:  ${{ secrets.OSSRH_PASSWORD }}
+          nexus_username: ${{ secrets.OSSRH_USER }}
+          nexus_password: ${{ secrets.OSSRH_PASSWORD }}
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          gpg_passphrase:  ${{ secrets.GPG_PASSPHRASE }}
-          maven_goals_phases: clean deploy -e -Prelease-ossrh
+          gpg_passphrase: ${{ secrets.GPG_PASSPHRASE }}
+          maven_goals_phases: clean deploy -e
           maven_profiles: release-ossrh
