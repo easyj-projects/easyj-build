@@ -75,6 +75,7 @@
 		<maven.dependency-check.skip>true</maven.dependency-check.skip>
 		<maven.dependency-check.autoUpdate>true</maven.dependency-check.autoUpdate>
 		<maven.gpg.passphrase></maven.gpg.passphrase>
+		<maven.gpg.passphraseServerId>sonatype-nexus-staging</maven.gpg.passphraseServerId>
 		<maven.gpg.secretKeyring></maven.gpg.secretKeyring>
 	</properties>
 
@@ -669,6 +670,7 @@
 								<configuration>
 									<keyname>A8FE5A54D8930774EE647F4A9F50958FB0B1CD9D</keyname>
 									<passphrase>${maven.gpg.passphrase}</passphrase>
+									<passphraseServerId>${maven.gpg.passphraseServerId}</passphraseServerId>
 									<secretKeyring>${maven.gpg.secretKeyring}</secretKeyring>
 									<gpgArguments>
 										<arg>--pinentry-mode</arg>
