@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.31</version>
+	<version>1.0.32</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -60,12 +60,14 @@
 		<!-- org.apache.maven.plugins -->
 		<maven.clean.failOnError>true</maven.clean.failOnError>
 		<maven.compiler.parameters>true</maven.compiler.parameters>
+		<maven.surefire.skip>false</maven.surefire.skip>
 		<maven.surefire.timezone>${user.timezone}</maven.surefire.timezone>
 		<maven.addMavenDescriptor>false</maven.addMavenDescriptor>
 		<maven.jar.addMavenDescriptor>${maven.addMavenDescriptor}</maven.jar.addMavenDescriptor>
 		<maven.war.addMavenDescriptor>${maven.addMavenDescriptor}</maven.war.addMavenDescriptor>
 		<maven.javadoc.skip>true</maven.javadoc.skip>
 		<maven.javadoc.failOnError>false</maven.javadoc.failOnError>
+		<maven.javadoc.failOnWarnings>false</maven.javadoc.failOnWarnings>
 		<maven.javadoc.quiet>true</maven.javadoc.quiet>
 		<maven.checkstyle.skip>true</maven.checkstyle.skip>
 		<maven.checkstyle.failsOnError>false</maven.checkstyle.failsOnError>
@@ -207,6 +209,7 @@
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>${maven-surefire-plugin.version}</version>
 					<configuration>
+						<skip>${maven.surefire.skip}</skip>
 						<systemPropertyVariables>
 							<user.timezone>${maven.surefire.timezone}</user.timezone>
 						</systemPropertyVariables>
@@ -267,6 +270,7 @@
 					<configuration>
 						<skip>${maven.javadoc.skip}</skip>
 						<failOnError>${maven.javadoc.failOnError}</failOnError>
+						<failOnWarnings>${maven.javadoc.failOnWarnings}</failOnWarnings>
 						<quiet>${maven.javadoc.quiet}</quiet>
 						<charset>${project.build.sourceEncoding}</charset>
 						<encoding>${project.build.sourceEncoding}</encoding>
@@ -469,6 +473,7 @@
 			<id>autocode</id>
 			<properties>
 				<maven.boot.skip>true</maven.boot.skip>
+				<maven.surefire.skip>true</maven.surefire.skip>
 			</properties>
 			<build>
 				<plugins>
@@ -476,15 +481,6 @@
 					<plugin>
 						<groupId>com.mycila</groupId>
 						<artifactId>license-maven-plugin</artifactId>
-					</plugin>
-
-					<!-- 跳过插件：Surefire -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<skip>true</skip>
-						</configuration>
 					</plugin>
 				</plugins>
 			</build>
@@ -498,6 +494,7 @@
 				<maven.clean.failOnError>false</maven.clean.failOnError>
 				<maven.javadoc.skip>false</maven.javadoc.skip>
 				<maven.javadoc.failOnError>true</maven.javadoc.failOnError>
+				<maven.javadoc.failOnWarnings>true</maven.javadoc.failOnWarnings>
 				<maven.checkstyle.skip>false</maven.checkstyle.skip>
 				<maven.checkstyle.failsOnError>true</maven.checkstyle.failsOnError>
 				<maven.checkstyle.failOnViolation>true</maven.checkstyle.failOnViolation>
@@ -534,19 +531,8 @@
 				<maven.boot.skip>true</maven.boot.skip>
 				<maven.clean.failOnError>false</maven.clean.failOnError>
 				<maven.javadoc.skip>false</maven.javadoc.skip>
+				<maven.surefire.skip>true</maven.surefire.skip>
 			</properties>
-			<build>
-				<plugins>
-					<!-- 跳过插件：Surefire -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<skip>true</skip>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
 		</profile>
 
 		<!-- profile: local -->
@@ -778,7 +764,6 @@
 				<maven.checkstyle.failsOnError>true</maven.checkstyle.failsOnError>
 				<maven.checkstyle.failOnViolation>true</maven.checkstyle.failOnViolation>
 				<maven.gpg.auto>true</maven.gpg.auto>
-				<maven.gpg.autoReleaseAfterClose>${maven.gpg.auto}</maven.gpg.autoReleaseAfterClose>
 			</properties>
 			<build>
 				<plugins>
