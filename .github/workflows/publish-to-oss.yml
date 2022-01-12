@@ -43,5 +43,5 @@ jobs:
           nexus_password: ${{ secrets.OSSRH_PASSWORD }}
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg_passphrase: ${{ secrets.GPG_PASSPHRASE }}
-          maven_profiles: release-ossrh
-          maven_goals_phases: clean deploy -e -Dmaven.gpg.mode=--pinentry-mode -Dmaven.gpg.loopback=loopback
+          maven_profiles: publish
+          maven_goals_phases: clean deploy -e -Dmaven.gpg.auto=true

@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.29</version>
+	<version>1.0.30</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -74,6 +74,14 @@
 		<maven.license.strictCheck>true</maven.license.strictCheck>
 		<maven.dependency-check.skip>true</maven.dependency-check.skip>
 		<maven.dependency-check.autoUpdate>true</maven.dependency-check.autoUpdate>
+		<maven.oss.url>https://s01.oss.sonatype.org</maven.oss.url>
+		<maven.gpg.serverId>ossrh</maven.gpg.serverId>
+		<maven.gpg.url>${maven.oss.url}</maven.gpg.url>
+		<maven.gpg.auto>false</maven.gpg.auto>
+		<maven.gpg.autoReleaseAfterClose>${maven.gpg.auto}</maven.gpg.autoReleaseAfterClose>
+		<maven.gpg.keyname>A8FE5A54D8930774EE647F4A9F50958FB0B1CD9D</maven.gpg.keyname>
+		<maven.gpg.passphrase/>
+		<maven.gpg.passphraseServerId/>
 	</properties>
 
 	<url>https://gitee.com/easyj-projects/easyj-build</url>
@@ -633,16 +641,72 @@
 				<maven.checkstyle.skip>false</maven.checkstyle.skip>
 				<maven.checkstyle.failsOnError>true</maven.checkstyle.failsOnError>
 				<maven.checkstyle.failOnViolation>true</maven.checkstyle.failOnViolation>
-				<maven.oss.url>https://s01.oss.sonatype.org</maven.oss.url>
-				<maven.gpg.serverId>ossrh</maven.gpg.serverId>
-				<maven.gpg.url>${maven.oss.url}</maven.gpg.url>
-				<maven.gpg.auto>false</maven.gpg.auto>
-				<maven.gpg.autoReleaseAfterClose>${maven.gpg.auto}</maven.gpg.autoReleaseAfterClose>
-				<maven.gpg.keyname>A8FE5A54D8930774EE647F4A9F50958FB0B1CD9D</maven.gpg.keyname>
-				<maven.gpg.passphrase></maven.gpg.passphrase>
-				<maven.gpg.passphraseServerId></maven.gpg.passphraseServerId>
-				<maven.gpg.mode></maven.gpg.mode>
-				<maven.gpg.loopback></maven.gpg.loopback>
+			</properties>
+			<build>
+				<plugins>
+					<!-- 使用插件：Source -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+					</plugin>
+					<!-- 使用插件：Nexus-Staging -->
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>${nexus-staging-maven-plugin.version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>${maven.gpg.serverId}</serverId>
+							<nexusUrl>${maven.gpg.url}</nexusUrl>
+							<autoReleaseAfterClose>${maven.gpg.autoReleaseAfterClose}</autoReleaseAfterClose>
+						</configuration>
+					</plugin>
+					<!-- 使用插件：GPG -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>${maven-gpg-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+								<configuration>
+									<keyname>${maven.gpg.keyname}</keyname>
+									<passphrase>${maven.gpg.passphrase}</passphrase>
+									<passphraseServerId>${maven.gpg.passphraseServerId}</passphraseServerId>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			<!-- OSSRH上传地址配置 -->
+			<distributionManagement>
+				<repository>
+					<id>ossrh</id>
+					<url>${maven.oss.url}/service/local/staging/deploy/maven2</url>
+				</repository>
+				<snapshotRepository>
+					<id>ossrh</id>
+					<uniqueVersion>false</uniqueVersion>
+					<url>${maven.oss.url}/content/repositories/snapshots</url>
+				</snapshotRepository>
+			</distributionManagement>
+		</profile>
+
+		<!-- profile: publish -->
+		<profile>
+			<id>publish</id>
+			<properties>
+				<maven.boot.skip>true</maven.boot.skip>
+				<maven.javadoc.skip>false</maven.javadoc.skip>
+				<maven.javadoc.failOnError>true</maven.javadoc.failOnError>
+				<maven.checkstyle.skip>false</maven.checkstyle.skip>
+				<maven.checkstyle.failsOnError>true</maven.checkstyle.failsOnError>
+				<maven.checkstyle.failOnViolation>true</maven.checkstyle.failOnViolation>
 			</properties>
 			<build>
 				<plugins>
@@ -680,8 +744,8 @@
 									<passphrase>${maven.gpg.passphrase}</passphrase>
 									<passphraseServerId>${maven.gpg.passphraseServerId}</passphraseServerId>
 									<gpgArguments>
-										<arg>${maven.gpg.mode}</arg>
-										<arg>${maven.gpg.loopback}</arg>
+										<arg>--pinentry-mode</arg>
+										<arg>loopback</arg>
 									</gpgArguments>
 								</configuration>
 							</execution>
