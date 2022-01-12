@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.28</version>
+	<version>1.0.29</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -583,6 +583,7 @@
 				</repository>
 				<snapshotRepository>
 					<id>kt-nexus-snapshots</id>
+					<uniqueVersion>false</uniqueVersion>
 					<url>http://10.1.50.116:8082/nexus/content/repositories/snapshots</url>
 				</snapshotRepository>
 			</distributionManagement>
@@ -696,6 +697,7 @@
 				</repository>
 				<snapshotRepository>
 					<id>ossrh</id>
+					<uniqueVersion>false</uniqueVersion>
 					<url>${maven.oss.url}/content/repositories/snapshots</url>
 				</snapshotRepository>
 			</distributionManagement>
