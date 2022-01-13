@@ -31,9 +31,9 @@ jobs:
           java-version: 8
 
       # step 3
-      - name: "Install GPG For MacOS"
-        if: startsWith(matrix.os, 'macos')
-        run: brew install gnupg
+      #- name: "Install GPG For MacOS"
+      #  if: startsWith(matrix.os, 'macos')
+      #  run: brew install gnupg
 
       # step 4
       - name: "Publish To OSS"

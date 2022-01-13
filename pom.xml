@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.32</version>
+	<version>1.0.33</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -535,9 +535,9 @@
 			</properties>
 		</profile>
 
-		<!-- profile: local -->
+		<!-- profile: release-local -->
 		<profile>
-			<id>local</id>
+			<id>release-local</id>
 			<build>
 				<plugins>
 					<!-- 使用插件：Source -->
@@ -669,18 +669,6 @@
 					</plugin>
 				</plugins>
 			</build>
-			<!-- OSSRH上传地址配置 -->
-			<distributionManagement>
-				<repository>
-					<id>ossrh</id>
-					<url>${maven.oss.url}/service/local/staging/deploy/maven2</url>
-				</repository>
-				<snapshotRepository>
-					<id>ossrh</id>
-					<uniqueVersion>false</uniqueVersion>
-					<url>${maven.oss.url}/content/repositories/snapshots</url>
-				</snapshotRepository>
-			</distributionManagement>
 		</profile>
 
 		<!-- profile: publish -->
@@ -739,18 +727,6 @@
 					</plugin>
 				</plugins>
 			</build>
-			<!-- OSSRH上传地址配置 -->
-			<distributionManagement>
-				<repository>
-					<id>ossrh</id>
-					<url>${maven.oss.url}/service/local/staging/deploy/maven2</url>
-				</repository>
-				<snapshotRepository>
-					<id>ossrh</id>
-					<uniqueVersion>false</uniqueVersion>
-					<url>${maven.oss.url}/content/repositories/snapshots</url>
-				</snapshotRepository>
-			</distributionManagement>
 		</profile>
 
 		<!-- profile: publish-auto -->
@@ -810,18 +786,19 @@
 					</plugin>
 				</plugins>
 			</build>
-			<!-- OSSRH上传地址配置 -->
-			<distributionManagement>
-				<repository>
-					<id>ossrh</id>
-					<url>${maven.oss.url}/service/local/staging/deploy/maven2</url>
-				</repository>
-				<snapshotRepository>
-					<id>ossrh</id>
-					<uniqueVersion>false</uniqueVersion>
-					<url>${maven.oss.url}/content/repositories/snapshots</url>
-				</snapshotRepository>
-			</distributionManagement>
 		</profile>
 	</profiles>
+
+	<!-- OSSRH仓库地址配置 -->
+	<distributionManagement>
+		<repository>
+			<id>ossrh</id>
+			<url>${maven.oss.url}/service/local/staging/deploy/maven2</url>
+		</repository>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<uniqueVersion>false</uniqueVersion>
+			<url>${maven.oss.url}/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
