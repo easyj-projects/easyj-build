@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.34</version>
+	<version>1.0.35</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -507,6 +507,28 @@
 		<!-- profile: CI/CD -->
 		<profile>
 			<id>cicd</id>
+			<properties>
+				<maven.boot.skip>true</maven.boot.skip>
+				<maven.javadoc.skip>false</maven.javadoc.skip>
+				<maven.javadoc.failOnError>true</maven.javadoc.failOnError>
+				<maven.checkstyle.skip>false</maven.checkstyle.skip>
+				<maven.checkstyle.failsOnError>true</maven.checkstyle.failsOnError>
+				<maven.checkstyle.failOnViolation>true</maven.checkstyle.failOnViolation>
+			</properties>
+			<build>
+				<plugins>
+					<!-- 使用插件：JaCoCo -->
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- profile: CI/CD -->
+		<profile>
+			<id>cicd8</id>
 			<properties>
 				<maven.boot.skip>true</maven.boot.skip>
 				<maven.javadoc.skip>false</maven.javadoc.skip>
