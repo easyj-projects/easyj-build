@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.33</version>
+	<version>1.0.34</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -61,6 +61,7 @@
 		<maven.clean.failOnError>true</maven.clean.failOnError>
 		<maven.compiler.parameters>true</maven.compiler.parameters>
 		<maven.surefire.skip>false</maven.surefire.skip>
+		<maven.surefire.argLine></maven.surefire.argLine>
 		<maven.surefire.timezone>${user.timezone}</maven.surefire.timezone>
 		<maven.addMavenDescriptor>false</maven.addMavenDescriptor>
 		<maven.jar.addMavenDescriptor>${maven.addMavenDescriptor}</maven.jar.addMavenDescriptor>
@@ -210,6 +211,7 @@
 					<version>${maven-surefire-plugin.version}</version>
 					<configuration>
 						<skip>${maven.surefire.skip}</skip>
+						<argLine>${maven.surefire.argLine}</argLine>
 						<systemPropertyVariables>
 							<user.timezone>${maven.surefire.timezone}</user.timezone>
 						</systemPropertyVariables>
