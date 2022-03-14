@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.36</version>
+	<version>1.0.37</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -80,11 +80,12 @@
 		<maven.oss.url>https://s01.oss.sonatype.org</maven.oss.url>
 		<maven.staging.serverId>ossrh</maven.staging.serverId>
 		<maven.staging.nexusUrl>${maven.oss.url}</maven.staging.nexusUrl>
-		<maven.staging.auto>false</maven.staging.auto>
-		<maven.staging.autoReleaseAfterClose>${maven.staging.auto}</maven.staging.autoReleaseAfterClose>
+		<maven.staging.autoReleaseAfterClose>false</maven.staging.autoReleaseAfterClose>
 		<maven.gpg.keyname>A8FE5A54D8930774EE647F4A9F50958FB0B1CD9D</maven.gpg.keyname>
 		<maven.gpg.passphrase/>
 		<maven.gpg.passphraseServerId/>
+		<maven.gpg.arg1/>
+		<maven.gpg.arg2/>
 	</properties>
 
 	<url>https://gitee.com/easyj-projects/easyj-build</url>
@@ -437,6 +438,42 @@
 						</execution>
 					</executions>
 				</plugin>
+				<!-- 插件定义：Nexus-Staging -->
+				<plugin>
+					<groupId>org.sonatype.plugins</groupId>
+					<artifactId>nexus-staging-maven-plugin</artifactId>
+					<version>${nexus-staging-maven-plugin.version}</version>
+					<extensions>true</extensions>
+					<configuration>
+						<serverId>${maven.staging.serverId}</serverId>
+						<nexusUrl>${maven.staging.nexusUrl}</nexusUrl>
+						<autoReleaseAfterClose>${maven.staging.autoReleaseAfterClose}</autoReleaseAfterClose>
+					</configuration>
+				</plugin>
+				<!-- 插件定义：GPG -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>${maven-gpg-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>sign-artifacts</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>sign</goal>
+							</goals>
+							<configuration>
+								<keyname>${maven.gpg.keyname}</keyname>
+								<passphrase>${maven.gpg.passphrase}</passphrase>
+								<passphraseServerId>${maven.gpg.passphraseServerId}</passphraseServerId>
+								<gpgArguments>
+									<arg>${maven.gpg.arg1}</arg>
+									<arg>${maven.gpg.arg2}</arg>
+								</gpgArguments>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 
@@ -663,33 +700,11 @@
 					<plugin>
 						<groupId>org.sonatype.plugins</groupId>
 						<artifactId>nexus-staging-maven-plugin</artifactId>
-						<version>${nexus-staging-maven-plugin.version}</version>
-						<extensions>true</extensions>
-						<configuration>
-							<serverId>${maven.staging.serverId}</serverId>
-							<nexusUrl>${maven.staging.nexusUrl}</nexusUrl>
-							<autoReleaseAfterClose>${maven.staging.autoReleaseAfterClose}</autoReleaseAfterClose>
-						</configuration>
 					</plugin>
 					<!-- 使用插件：GPG -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>${maven-gpg-plugin.version}</version>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-								<configuration>
-									<keyname>${maven.gpg.keyname}</keyname>
-									<passphrase>${maven.gpg.passphrase}</passphrase>
-									<passphraseServerId>${maven.gpg.passphraseServerId}</passphraseServerId>
-								</configuration>
-							</execution>
-						</executions>
 					</plugin>
 				</plugins>
 			</build>
@@ -705,6 +720,8 @@
 				<maven.checkstyle.skip>false</maven.checkstyle.skip>
 				<maven.checkstyle.failsOnError>true</maven.checkstyle.failsOnError>
 				<maven.checkstyle.failOnViolation>true</maven.checkstyle.failOnViolation>
+				<maven.gpg.arg1>--pinentry-mode</maven.gpg.arg1>
+				<maven.gpg.arg2>loopback</maven.gpg.arg2>
 			</properties>
 			<build>
 				<plugins>
@@ -717,37 +734,11 @@
 					<plugin>
 						<groupId>org.sonatype.plugins</groupId>
 						<artifactId>nexus-staging-maven-plugin</artifactId>
-						<version>${nexus-staging-maven-plugin.version}</version>
-						<extensions>true</extensions>
-						<configuration>
-							<serverId>${maven.staging.serverId}</serverId>
-							<nexusUrl>${maven.staging.nexusUrl}</nexusUrl>
-							<autoReleaseAfterClose>${maven.staging.autoReleaseAfterClose}</autoReleaseAfterClose>
-						</configuration>
 					</plugin>
 					<!-- 使用插件：GPG -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>${maven-gpg-plugin.version}</version>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-								<configuration>
-									<keyname>${maven.gpg.keyname}</keyname>
-									<passphrase>${maven.gpg.passphrase}</passphrase>
-									<passphraseServerId>${maven.gpg.passphraseServerId}</passphraseServerId>
-									<gpgArguments>
-										<arg>--pinentry-mode</arg>
-										<arg>loopback</arg>
-									</gpgArguments>
-								</configuration>
-							</execution>
-						</executions>
 					</plugin>
 				</plugins>
 			</build>
@@ -763,7 +754,9 @@
 				<maven.checkstyle.skip>false</maven.checkstyle.skip>
 				<maven.checkstyle.failsOnError>true</maven.checkstyle.failsOnError>
 				<maven.checkstyle.failOnViolation>true</maven.checkstyle.failOnViolation>
-				<maven.gpg.auto>true</maven.gpg.auto>
+				<maven.staging.autoReleaseAfterClose>true</maven.staging.autoReleaseAfterClose>
+				<maven.gpg.arg1>--pinentry-mode</maven.gpg.arg1>
+				<maven.gpg.arg2>loopback</maven.gpg.arg2>
 			</properties>
 			<build>
 				<plugins>
@@ -776,37 +769,11 @@
 					<plugin>
 						<groupId>org.sonatype.plugins</groupId>
 						<artifactId>nexus-staging-maven-plugin</artifactId>
-						<version>${nexus-staging-maven-plugin.version}</version>
-						<extensions>true</extensions>
-						<configuration>
-							<serverId>${maven.staging.serverId}</serverId>
-							<nexusUrl>${maven.staging.nexusUrl}</nexusUrl>
-							<autoReleaseAfterClose>${maven.staging.autoReleaseAfterClose}</autoReleaseAfterClose>
-						</configuration>
 					</plugin>
 					<!-- 使用插件：GPG -->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>${maven-gpg-plugin.version}</version>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-								<configuration>
-									<keyname>${maven.gpg.keyname}</keyname>
-									<passphrase>${maven.gpg.passphrase}</passphrase>
-									<passphraseServerId>${maven.gpg.passphraseServerId}</passphraseServerId>
-									<gpgArguments>
-										<arg>--pinentry-mode</arg>
-										<arg>loopback</arg>
-									</gpgArguments>
-								</configuration>
-							</execution>
-						</executions>
 					</plugin>
 				</plugins>
 			</build>
