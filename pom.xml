@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.35</version>
+	<version>1.0.36</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -47,8 +47,8 @@
 		<!-- org.owasp -->
 		<dependency-check-maven.version>6.5.1</dependency-check-maven.version>
 		<!-- GPG -->
-		<nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
-		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+		<nexus-staging-maven-plugin.version>1.6.12</nexus-staging-maven-plugin.version>
+		<maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
 
 		<!-- the dependencies for maven-checkstyle-plugin -->
 		<com.puppycrawl.tools-checkstyle.version>9.2.1</com.puppycrawl.tools-checkstyle.version>
@@ -78,10 +78,10 @@
 		<maven.dependency-check.skip>true</maven.dependency-check.skip>
 		<maven.dependency-check.autoUpdate>true</maven.dependency-check.autoUpdate>
 		<maven.oss.url>https://s01.oss.sonatype.org</maven.oss.url>
-		<maven.gpg.serverId>ossrh</maven.gpg.serverId>
-		<maven.gpg.url>${maven.oss.url}</maven.gpg.url>
-		<maven.gpg.auto>false</maven.gpg.auto>
-		<maven.gpg.autoReleaseAfterClose>${maven.gpg.auto}</maven.gpg.autoReleaseAfterClose>
+		<maven.staging.serverId>ossrh</maven.staging.serverId>
+		<maven.staging.nexusUrl>${maven.oss.url}</maven.staging.nexusUrl>
+		<maven.staging.auto>false</maven.staging.auto>
+		<maven.staging.autoReleaseAfterClose>${maven.staging.auto}</maven.staging.autoReleaseAfterClose>
 		<maven.gpg.keyname>A8FE5A54D8930774EE647F4A9F50958FB0B1CD9D</maven.gpg.keyname>
 		<maven.gpg.passphrase/>
 		<maven.gpg.passphraseServerId/>
@@ -666,9 +666,9 @@
 						<version>${nexus-staging-maven-plugin.version}</version>
 						<extensions>true</extensions>
 						<configuration>
-							<serverId>${maven.gpg.serverId}</serverId>
-							<nexusUrl>${maven.gpg.url}</nexusUrl>
-							<autoReleaseAfterClose>${maven.gpg.autoReleaseAfterClose}</autoReleaseAfterClose>
+							<serverId>${maven.staging.serverId}</serverId>
+							<nexusUrl>${maven.staging.nexusUrl}</nexusUrl>
+							<autoReleaseAfterClose>${maven.staging.autoReleaseAfterClose}</autoReleaseAfterClose>
 						</configuration>
 					</plugin>
 					<!-- 使用插件：GPG -->
@@ -720,9 +720,9 @@
 						<version>${nexus-staging-maven-plugin.version}</version>
 						<extensions>true</extensions>
 						<configuration>
-							<serverId>${maven.gpg.serverId}</serverId>
-							<nexusUrl>${maven.gpg.url}</nexusUrl>
-							<autoReleaseAfterClose>${maven.gpg.autoReleaseAfterClose}</autoReleaseAfterClose>
+							<serverId>${maven.staging.serverId}</serverId>
+							<nexusUrl>${maven.staging.nexusUrl}</nexusUrl>
+							<autoReleaseAfterClose>${maven.staging.autoReleaseAfterClose}</autoReleaseAfterClose>
 						</configuration>
 					</plugin>
 					<!-- 使用插件：GPG -->
@@ -779,9 +779,9 @@
 						<version>${nexus-staging-maven-plugin.version}</version>
 						<extensions>true</extensions>
 						<configuration>
-							<serverId>${maven.gpg.serverId}</serverId>
-							<nexusUrl>${maven.gpg.url}</nexusUrl>
-							<autoReleaseAfterClose>${maven.gpg.autoReleaseAfterClose}</autoReleaseAfterClose>
+							<serverId>${maven.staging.serverId}</serverId>
+							<nexusUrl>${maven.staging.nexusUrl}</nexusUrl>
+							<autoReleaseAfterClose>${maven.staging.autoReleaseAfterClose}</autoReleaseAfterClose>
 						</configuration>
 					</plugin>
 					<!-- 使用插件：GPG -->
