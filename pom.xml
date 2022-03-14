@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.37</version>
+	<version>1.0.38</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -77,6 +77,7 @@
 		<maven.license.strictCheck>true</maven.license.strictCheck>
 		<maven.dependency-check.skip>true</maven.dependency-check.skip>
 		<maven.dependency-check.autoUpdate>true</maven.dependency-check.autoUpdate>
+		<maven.dependency-check.failOnError>false</maven.dependency-check.failOnError>
 		<maven.oss.url>https://s01.oss.sonatype.org</maven.oss.url>
 		<maven.staging.serverId>ossrh</maven.staging.serverId>
 		<maven.staging.nexusUrl>${maven.oss.url}</maven.staging.nexusUrl>
@@ -429,6 +430,7 @@
 					<configuration>
 						<skip>${maven.dependency-check.skip}</skip>
 						<autoUpdate>${maven.dependency-check.autoUpdate}</autoUpdate>
+						<failOnError>${maven.dependency-check.failOnError}</failOnError>
 					</configuration>
 					<executions>
 						<execution>
