@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.40</version>
+	<version>1.0.41</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -71,6 +71,7 @@
 		<maven.javadoc.failOnError>false</maven.javadoc.failOnError>
 		<maven.javadoc.failOnWarnings>false</maven.javadoc.failOnWarnings>
 		<maven.javadoc.quiet>true</maven.javadoc.quiet>
+		<maven.deploy.skip>false</maven.deploy.skip>
 		<maven.checkstyle.skip>true</maven.checkstyle.skip>
 		<maven.checkstyle.failsOnError>false</maven.checkstyle.failsOnError>
 		<maven.checkstyle.failOnViolation>false</maven.checkstyle.failOnViolation>
@@ -83,6 +84,11 @@
 		<maven.staging.serverId>ossrh</maven.staging.serverId>
 		<maven.staging.nexusUrl>${maven.oss.url}</maven.staging.nexusUrl>
 		<maven.staging.autoReleaseAfterClose>false</maven.staging.autoReleaseAfterClose>
+		<maven.staging.skipStaging>${maven.deploy.skip}</maven.staging.skipStaging>
+		<maven.staging.skipLocalStaging>${maven.deploy.skip}</maven.staging.skipLocalStaging>
+		<maven.staging.skipRemoteStaging>${maven.deploy.skip}</maven.staging.skipRemoteStaging>
+		<maven.staging.skipNexusStagingDeployMojo>${maven.deploy.skip}</maven.staging.skipNexusStagingDeployMojo>
+		<maven.staging.skipStagingRepositoryClose>${maven.deploy.skip}</maven.staging.skipStagingRepositoryClose>
 		<maven.gpg.keyname>A8FE5A54D8930774EE647F4A9F50958FB0B1CD9D</maven.gpg.keyname>
 		<maven.gpg.passphrase/>
 		<maven.gpg.passphraseServerId/>
@@ -316,6 +322,9 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-deploy-plugin</artifactId>
 					<version>${maven-deploy-plugin.version}</version>
+					<configuration>
+						<skip>${maven.deploy.skip}</skip>
+					</configuration>
 				</plugin>
 				<!-- 插件定义：Checkstyle -->
 				<plugin>
@@ -451,6 +460,11 @@
 						<serverId>${maven.staging.serverId}</serverId>
 						<nexusUrl>${maven.staging.nexusUrl}</nexusUrl>
 						<autoReleaseAfterClose>${maven.staging.autoReleaseAfterClose}</autoReleaseAfterClose>
+						<skipStaging>${maven.staging.skipStaging}</skipStaging>
+						<skipLocalStaging>${maven.staging.skipLocalStaging}</skipLocalStaging>
+						<skipRemoteStaging>${maven.staging.skipRemoteStaging}</skipRemoteStaging>
+						<skipNexusStagingDeployMojo>${maven.staging.skipNexusStagingDeployMojo}</skipNexusStagingDeployMojo>
+						<skipStagingRepositoryClose>${maven.staging.skipStagingRepositoryClose}</skipStagingRepositoryClose>
 					</configuration>
 				</plugin>
 				<!-- 插件定义：GPG -->
@@ -602,6 +616,12 @@
 		<!-- profile: release-local -->
 		<profile>
 			<id>release-local</id>
+			<properties>
+				<maven.boot.skip>true</maven.boot.skip>
+				<maven.javadoc.skip>true</maven.javadoc.skip>
+				<maven.checkstyle.skip>true</maven.checkstyle.skip>
+				<maven.dependency-check.skip>true</maven.dependency-check.skip>
+			</properties>
 			<build>
 				<plugins>
 					<!-- 使用插件：Source -->
