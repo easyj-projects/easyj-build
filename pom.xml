@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.41</version>
+	<version>1.0.42</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -84,11 +84,13 @@
 		<maven.staging.serverId>ossrh</maven.staging.serverId>
 		<maven.staging.nexusUrl>${maven.oss.url}</maven.staging.nexusUrl>
 		<maven.staging.autoReleaseAfterClose>false</maven.staging.autoReleaseAfterClose>
-		<maven.staging.skipStaging>${maven.deploy.skip}</maven.staging.skipStaging>
-		<maven.staging.skipLocalStaging>${maven.deploy.skip}</maven.staging.skipLocalStaging>
-		<maven.staging.skipRemoteStaging>${maven.deploy.skip}</maven.staging.skipRemoteStaging>
-		<maven.staging.skipNexusStagingDeployMojo>${maven.deploy.skip}</maven.staging.skipNexusStagingDeployMojo>
-		<maven.staging.skipStagingRepositoryClose>${maven.deploy.skip}</maven.staging.skipStagingRepositoryClose>
+		<maven.staging.skip>${maven.deploy.skip}</maven.staging.skip>
+		<maven.staging.skipStaging>${maven.staging.skip}</maven.staging.skipStaging>
+		<maven.staging.skipLocalStaging>${maven.staging.skip}</maven.staging.skipLocalStaging>
+		<maven.staging.skipRemoteStaging>${maven.staging.skip}</maven.staging.skipRemoteStaging>
+		<maven.staging.skipNexusStagingDeployMojo>${maven.staging.skip}</maven.staging.skipNexusStagingDeployMojo>
+		<maven.staging.skipStagingRepositoryClose>${maven.staging.skip}</maven.staging.skipStagingRepositoryClose>
+		<maven.gpg.skip>${maven.deploy.skip}</maven.gpg.skip>
 		<maven.gpg.keyname>A8FE5A54D8930774EE647F4A9F50958FB0B1CD9D</maven.gpg.keyname>
 		<maven.gpg.passphrase/>
 		<maven.gpg.passphraseServerId/>
@@ -480,6 +482,7 @@
 								<goal>sign</goal>
 							</goals>
 							<configuration>
+								<skip>${maven.gpg.skip}</skip>
 								<keyname>${maven.gpg.keyname}</keyname>
 								<passphrase>${maven.gpg.passphrase}</passphrase>
 								<passphraseServerId>${maven.gpg.passphraseServerId}</passphraseServerId>
