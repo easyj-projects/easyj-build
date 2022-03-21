@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.42</version>
+	<version>1.0.43</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -75,6 +75,7 @@
 		<maven.checkstyle.skip>true</maven.checkstyle.skip>
 		<maven.checkstyle.failsOnError>false</maven.checkstyle.failsOnError>
 		<maven.checkstyle.failOnViolation>false</maven.checkstyle.failOnViolation>
+		<maven.license.skip>false</maven.license.skip>
 		<maven.license.quiet>true</maven.license.quiet>
 		<maven.license.strictCheck>true</maven.license.strictCheck>
 		<maven.dependency-check.skip>true</maven.dependency-check.skip>
@@ -413,6 +414,7 @@
 					<artifactId>license-maven-plugin</artifactId>
 					<version>${license-maven-plugin.version}</version>
 					<configuration>
+						<skip>${maven.license.skip}</skip>
 						<quiet>${maven.license.quiet}</quiet>
 						<strictCheck>${maven.license.strictCheck}</strictCheck>
 						<header>${user.dir}/src/license/copyright.txt</header>
