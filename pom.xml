@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.43</version>
+	<version>1.0.44</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -182,7 +182,7 @@
 							<fileset>
 								<directory>./</directory>
 								<includes>
-									<include>*-pom*.xml</include>
+									<include>*-pom.xml</include>
 								</includes>
 								<followSymlinks>false</followSymlinks>
 							</fileset>
