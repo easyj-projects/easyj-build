@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.0.45</version>
+	<version>1.0.46</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -20,67 +20,88 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
+
 		<user.timezone>Asia/Shanghai</user.timezone>
 
 
-		<!-- ***** maven plugin versions ***** -->
-		<!-- org.springframework.boot -->
-		<spring-boot.version>2.7.0</spring-boot.version>
-		<!-- org.apache.maven.plugins -->
-		<maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
-		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-		<maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
-		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-		<maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
-		<maven-war-plugin.version>3.3.2</maven-war-plugin.version>
-		<maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-		<!--<maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>-->
-		<maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
-		<maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
-		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
-		<maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
-		<!-- org.codehaus.mojo -->
-		<flatten-maven-plugin.version>1.2.7</flatten-maven-plugin.version>
-		<!-- org.jacoco -->
-		<jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
-		<!-- com.mycila -->
-		<license-maven-plugin.version>4.1</license-maven-plugin.version>
-		<!-- org.owasp -->
-		<dependency-check-maven.version>6.5.1</dependency-check-maven.version>
-		<!-- GPG -->
-		<nexus-staging-maven-plugin.version>1.6.12</nexus-staging-maven-plugin.version>
-		<maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
+		<!-- ********** maven-plugin Versions and Default configurations ********** -->
 
-		<!-- the dependencies for maven-checkstyle-plugin -->
-		<com.puppycrawl.tools-checkstyle.version>9.2.1</com.puppycrawl.tools-checkstyle.version>
+		<!-- icu.easyj.maven.plugins : easyj-maven-plugin -->
+		<easyj-maven-plugin.version>1.0.2</easyj-maven-plugin.version>
+		<maven.simplify.simplifiedPomFileName>.flattened-pom.xml</maven.simplify.simplifiedPomFileName>
+		<maven.simplify.useTabIndent>true</maven.simplify.useTabIndent>
 
+		<!-- org.springframework.boot : spring-boot-maven-plugin -->
+		<spring-boot.version>2.7.1</spring-boot.version>
+		<spring-boot.repackage.attach>false</spring-boot.repackage.attach><!-- 默认为true，这里设置为false -->
+		<start-class/>
 
-		<!-- ***** maven plugin properties ***** -->
-		<!-- org.springframework.boot -->
-		<maven.boot.skip>false</maven.boot.skip>
-		<!-- org.apache.maven.plugins -->
+		<!-- org.apache.maven.plugins : maven-clean-plugin -->
+		<maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
 		<maven.clean.failOnError>true</maven.clean.failOnError>
+
+		<!-- org.apache.maven.plugins : maven-checkstyle-plugin -->
+		<maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
+		<maven.checkstyle.skip>true</maven.checkstyle.skip>
+		<maven.checkstyle.failsOnError>false</maven.checkstyle.failsOnError>
+		<maven.checkstyle.failOnViolation>false</maven.checkstyle.failOnViolation>
+		<!-- the dependencies for maven-checkstyle-plugin -->
+		<com.puppycrawl.tools-checkstyle.version>9.3</com.puppycrawl.tools-checkstyle.version>
+
+		<!-- org.apache.maven.plugins : maven-resources-plugin -->
+		<maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+
+		<!-- org.apache.maven.plugins : maven-compiler-plugin -->
+		<maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
 		<maven.compiler.parameters>true</maven.compiler.parameters>
-		<maven.surefire.skip>false</maven.surefire.skip>
-		<maven.surefire.argLine></maven.surefire.argLine>
-		<maven.surefire.timezone>${user.timezone}</maven.surefire.timezone>
+
+		<!-- org.apache.maven.plugins : maven-surefire-plugin -->
+		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+		<argLine/>
+		<maven.test.argLine>${argLine}</maven.test.argLine>
+		<maven.test.timezone>${user.timezone}</maven.test.timezone>
+
+		<!-- org.apache.maven.plugins : maven-jar-plugin & maven-war-plugin -->
+		<maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
+		<maven-war-plugin.version>3.3.2</maven-war-plugin.version>
 		<maven.addMavenDescriptor>false</maven.addMavenDescriptor>
 		<maven.jar.addMavenDescriptor>${maven.addMavenDescriptor}</maven.jar.addMavenDescriptor>
 		<maven.war.addMavenDescriptor>${maven.addMavenDescriptor}</maven.war.addMavenDescriptor>
+
+		<!-- org.apache.maven.plugins : maven-source-plugin -->
+		<maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+
+		<!-- org.apache.maven.plugins : maven-javadoc-plugin -->
+		<maven-javadoc-plugin.version>3.4.0</maven-javadoc-plugin.version>
 		<maven.javadoc.skip>true</maven.javadoc.skip>
 		<maven.javadoc.failOnError>false</maven.javadoc.failOnError>
 		<maven.javadoc.failOnWarnings>false</maven.javadoc.failOnWarnings>
 		<maven.javadoc.quiet>true</maven.javadoc.quiet>
+
+		<!-- org.apache.maven.plugins : maven-shade-plugin -->
+		<maven-shade-plugin.version>3.3.0</maven-shade-plugin.version>
+
+		<!-- org.apache.maven.plugins : maven-deploy-plugin -->
+		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
 		<maven.deploy.skip>false</maven.deploy.skip>
-		<maven.checkstyle.skip>true</maven.checkstyle.skip>
-		<maven.checkstyle.failsOnError>false</maven.checkstyle.failsOnError>
-		<maven.checkstyle.failOnViolation>false</maven.checkstyle.failOnViolation>
+
+		<!-- org.jacoco : jacoco-maven-plugin -->
+		<jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
+
+		<!-- com.mycila : license-maven-plugin -->
+		<license-maven-plugin.version>4.1</license-maven-plugin.version>
 		<maven.license.skip>false</maven.license.skip>
 		<maven.license.quiet>true</maven.license.quiet>
 		<maven.license.strictCheck>true</maven.license.strictCheck>
+
+		<!-- org.owasp : dependency-check-maven -->
+		<dependency-check-maven.version>7.1.1</dependency-check-maven.version>
 		<maven.dependency-check.skip>true</maven.dependency-check.skip>
 		<maven.dependency-check.autoUpdate>true</maven.dependency-check.autoUpdate>
 		<maven.dependency-check.failOnError>false</maven.dependency-check.failOnError>
+
+		<!-- org.sonatype.plugins : nexus-staging-maven-plugin -->
+		<nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
 		<maven.oss.url>https://s01.oss.sonatype.org</maven.oss.url>
 		<maven.staging.serverId>ossrh</maven.staging.serverId>
 		<maven.staging.nexusUrl>${maven.oss.url}</maven.staging.nexusUrl>
@@ -91,21 +112,24 @@
 		<maven.staging.skipRemoteStaging>${maven.staging.skip}</maven.staging.skipRemoteStaging>
 		<maven.staging.skipNexusStagingDeployMojo>${maven.staging.skip}</maven.staging.skipNexusStagingDeployMojo>
 		<maven.staging.skipStagingRepositoryClose>${maven.staging.skip}</maven.staging.skipStagingRepositoryClose>
+
+		<!-- org.apache.maven.plugins : maven-gpg-plugin -->
+		<maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
 		<maven.gpg.skip>${maven.deploy.skip}</maven.gpg.skip>
-		<maven.gpg.keyname>A8FE5A54D8930774EE647F4A9F50958FB0B1CD9D</maven.gpg.keyname>
+		<maven.gpg.keyname/>
 		<maven.gpg.passphrase/>
 		<maven.gpg.passphraseServerId/>
 		<maven.gpg.arg1/>
 		<maven.gpg.arg2/>
 	</properties>
 
-	<url>https://gitee.com/easyj-projects/easyj-build</url>
+	<url>https://easyj.icu</url>
 
 	<inceptionYear>2021</inceptionYear>
 
 	<organization>
 		<name>EasyJ开源社区</name>
-		<url>https://gitee.com/easyj-projects</url>
+		<url>https://github.com/easyj-projects</url>
 	</organization>
 
 	<licenses>
@@ -121,7 +145,7 @@
 			<id>wangliang181230</id>
 			<name>王良</name>
 			<email>841369634@qq.com</email>
-			<url>https://gitee.com/wangliang181230</url>
+			<url>https://github.com/wangliang181230</url>
 			<organization>浙江蕙康科技有限公司</organization>
 			<organizationUrl>https://www.jyhk.com</organizationUrl>
 			<roles>
@@ -131,14 +155,14 @@
 	</developers>
 
 	<scm>
-		<connection>scm:git@gitee.com:easyj-projects/easyj-build.git</connection>
-		<developerConnection>scm:git@gitee.com:easyj-projects/easyj-build.git</developerConnection>
-		<url>https://gitee.com/easyj-projects/easyj-build</url>
+		<connection>scm:git@github.com:easyj-projects/easyj-build.git</connection>
+		<developerConnection>scm:git@github.com:easyj-projects/easyj-build.git</developerConnection>
+		<url>https://github.com/easyj-projects/easyj-build</url>
 	</scm>
 
 	<issueManagement>
-		<system>gitee</system>
-		<url>https://gitee.com/easyj-projects/easyj-build/issues</url>
+		<system>github</system>
+		<url>https://github.com/easyj-projects/easyj-build/issues</url>
 	</issueManagement>
 
 	<build>
@@ -153,19 +177,42 @@
 
 		<pluginManagement>
 			<plugins>
+				<!-- 插件定义：EasyJ -->
+				<plugin>
+					<groupId>icu.easyj.maven.plugins</groupId>
+					<artifactId>easyj-maven-plugin</artifactId>
+					<version>${easyj-maven-plugin.version}</version>
+					<executions>
+						<!-- maven-clean-plugin 已经配置了清理该文件
+						<execution>
+							<id>clean-simplify-pom</id>
+							<phase>clean</phase>
+							<goals>
+								<goal>clean-simplify-pom</goal>
+							</goals>
+						</execution>-->
+						<execution>
+							<id>simplify-pom</id>
+							<phase>process-resources</phase>
+							<goals>
+								<goal>simplify-pom</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
 				<!-- 插件定义：Spring Boot -->
 				<plugin>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
 					<version>${spring-boot.version}</version>
 					<configuration>
-						<skip>${maven.boot.skip}</skip>
-						<attach>false</attach>
+						<attach>${spring-boot.repackage.attach}</attach>
 						<mainClass>${start-class}</mainClass>
 					</configuration>
 					<executions>
 						<execution>
 							<id>repackage</id>
+							<phase>package</phase>
 							<goals>
 								<goal>repackage</goal>
 							</goals>
@@ -174,7 +221,6 @@
 				</plugin>
 				<!-- 插件定义：Clean -->
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-clean-plugin</artifactId>
 					<version>${maven-clean-plugin.version}</version>
 					<configuration>
@@ -183,56 +229,43 @@
 							<fileset>
 								<directory>./</directory>
 								<includes>
-									<include>*-pom.xml</include>
+									<include>dependency-reduced-pom.xml</include>
+									<include>.flattened-pom.xml</include>
 								</includes>
 								<followSymlinks>false</followSymlinks>
 							</fileset>
 						</filesets>
 					</configuration>
 				</plugin>
-				<!-- 插件定义：Compiler -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${maven-compiler-plugin.version}</version>
-					<configuration>
-						<source>${maven.compiler.source}</source>
-						<target>${maven.compiler.target}</target>
-						<encoding>${project.build.sourceEncoding}</encoding>
-						<!-- 编译后保留原方法或构造函数参数名 -->
-						<parameters>${maven.compiler.parameters}</parameters>
-					</configuration>
-				</plugin>
 				<!-- 插件定义：Resources -->
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
 					<version>${maven-resources-plugin.version}</version>
 					<configuration>
-						<encoding>${project.build.sourceEncoding}</encoding>
-						<propertiesEncoding>${project.build.sourceEncoding}</propertiesEncoding>
 						<delimiters>
 							<delimiter>${resource.delimiter}</delimiter>
 						</delimiters>
 						<useDefaultDelimiters>false</useDefaultDelimiters>
 					</configuration>
 				</plugin>
+				<!-- 插件定义：Compiler -->
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+				</plugin>
 				<!-- 插件定义：Surefire -->
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>${maven-surefire-plugin.version}</version>
 					<configuration>
-						<skip>${maven.surefire.skip}</skip>
-						<argLine>${maven.surefire.argLine}</argLine>
+						<argLine>${maven.test.argLine}</argLine>
 						<systemPropertyVariables>
-							<user.timezone>${maven.surefire.timezone}</user.timezone>
+							<user.timezone>${maven.test.timezone}</user.timezone>
 						</systemPropertyVariables>
 					</configuration>
 				</plugin>
 				<!-- 插件定义：Jar -->
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>${maven-jar-plugin.version}</version>
 					<configuration>
@@ -250,9 +283,8 @@
 				</plugin>
 				<!-- 插件定义：War -->
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
-					<version>${maven-war-plugin.versioin}</version>
+					<version>${maven-war-plugin.version}</version>
 					<configuration>
 						<archive>
 							<addMavenDescriptor>${maven.war.addMavenDescriptor}</addMavenDescriptor>
@@ -265,11 +297,11 @@
 				</plugin>
 				<!-- 插件定义：Source -->
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-source-plugin</artifactId>
 					<version>${maven-source-plugin.version}</version>
 					<executions>
 						<execution>
+							<id>attach-sources</id>
 							<phase>package</phase>
 							<goals>
 								<goal>jar-no-fork</goal>
@@ -279,7 +311,6 @@
 				</plugin>
 				<!-- 插件定义：Javadoc -->
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
 					<version>${maven-javadoc-plugin.version}</version>
 					<configuration>
@@ -303,7 +334,6 @@
 				</plugin>
 				<!-- 插件定义：Shade -->
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-shade-plugin</artifactId>
 					<version>${maven-shade-plugin.version}</version>
 					<configuration>
@@ -323,16 +353,11 @@
 				</plugin>
 				<!-- 插件定义：Deploy -->
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-deploy-plugin</artifactId>
 					<version>${maven-deploy-plugin.version}</version>
-					<configuration>
-						<skip>${maven.deploy.skip}</skip>
-					</configuration>
 				</plugin>
 				<!-- 插件定义：Checkstyle -->
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-checkstyle-plugin</artifactId>
 					<version>${maven-checkstyle-plugin.version}</version>
 					<configuration>
@@ -360,31 +385,6 @@
 							</configuration>
 							<goals>
 								<goal>checkstyle</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-				<!-- 插件定义：Flatten -->
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>flatten-maven-plugin</artifactId>
-					<version>${flatten-maven-plugin.version}</version>
-					<configuration>
-						<updatePomFile>true</updatePomFile>
-					</configuration>
-					<executions>
-						<execution>
-							<id>flatten</id>
-							<phase>process-resources</phase>
-							<goals>
-								<goal>flatten</goal>
-							</goals>
-						</execution>
-						<execution>
-							<id>flatten.clean</id>
-							<phase>clean</phase>
-							<goals>
-								<goal>clean</goal>
 							</goals>
 						</execution>
 					</executions>
@@ -474,7 +474,6 @@
 				</plugin>
 				<!-- 插件定义：GPG -->
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-gpg-plugin</artifactId>
 					<version>${maven-gpg-plugin.version}</version>
 					<executions>
@@ -501,24 +500,25 @@
 		</pluginManagement>
 
 		<plugins>
+			<!-- 使用插件：EasyjJ -->
+			<plugin>
+				<groupId>icu.easyj.maven.plugins</groupId>
+				<artifactId>easyj-maven-plugin</artifactId>
+			</plugin>
 			<!-- 使用插件：Clean -->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
 			</plugin>
 			<!-- 使用插件：Compiler -->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
 			<!-- 使用插件：Javadoc -->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 			</plugin>
 			<!-- 使用插件：Checkstyle -->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
 			</plugin>
 			<!-- 使用插件：dependency-check -->
@@ -534,8 +534,8 @@
 		<profile>
 			<id>autocode</id>
 			<properties>
-				<maven.boot.skip>true</maven.boot.skip>
-				<maven.surefire.skip>true</maven.surefire.skip>
+				<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
+				<maven.test.skip>true</maven.test.skip>
 			</properties>
 			<build>
 				<plugins>
@@ -552,7 +552,7 @@
 		<profile>
 			<id>check</id>
 			<properties>
-				<maven.boot.skip>true</maven.boot.skip>
+				<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
 				<maven.clean.failOnError>false</maven.clean.failOnError>
 				<maven.javadoc.skip>false</maven.javadoc.skip>
 				<maven.javadoc.failOnError>true</maven.javadoc.failOnError>
@@ -568,7 +568,7 @@
 		<profile>
 			<id>cicd</id>
 			<properties>
-				<maven.boot.skip>true</maven.boot.skip>
+				<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
 				<maven.javadoc.skip>false</maven.javadoc.skip>
 				<maven.javadoc.failOnError>true</maven.javadoc.failOnError>
 				<maven.checkstyle.skip>false</maven.checkstyle.skip>
@@ -590,7 +590,7 @@
 		<profile>
 			<id>cicd8</id>
 			<properties>
-				<maven.boot.skip>true</maven.boot.skip>
+				<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
 				<maven.javadoc.skip>false</maven.javadoc.skip>
 				<maven.javadoc.failOnError>true</maven.javadoc.failOnError>
 				<maven.checkstyle.skip>false</maven.checkstyle.skip>
@@ -612,10 +612,10 @@
 		<profile>
 			<id>api-doc</id>
 			<properties>
-				<maven.boot.skip>true</maven.boot.skip>
+				<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
 				<maven.clean.failOnError>false</maven.clean.failOnError>
 				<maven.javadoc.skip>false</maven.javadoc.skip>
-				<maven.surefire.skip>true</maven.surefire.skip>
+				<maven.test.skip>true</maven.test.skip>
 			</properties>
 		</profile>
 
@@ -623,7 +623,7 @@
 		<profile>
 			<id>release-local</id>
 			<properties>
-				<maven.boot.skip>true</maven.boot.skip>
+				<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
 				<maven.javadoc.skip>true</maven.javadoc.skip>
 				<maven.checkstyle.skip>true</maven.checkstyle.skip>
 				<maven.dependency-check.skip>true</maven.dependency-check.skip>
@@ -632,7 +632,6 @@
 				<plugins>
 					<!-- 使用插件：Source -->
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
 					</plugin>
 				</plugins>
@@ -643,7 +642,7 @@
 		<profile>
 			<id>release-kt</id>
 			<properties>
-				<maven.boot.skip>true</maven.boot.skip>
+				<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
 				<maven.javadoc.skip>false</maven.javadoc.skip>
 				<maven.javadoc.failOnError>true</maven.javadoc.failOnError>
 				<maven.checkstyle.skip>false</maven.checkstyle.skip>
@@ -654,7 +653,6 @@
 				<plugins>
 					<!-- 使用插件：Source -->
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
 					</plugin>
 				</plugins>
@@ -662,11 +660,11 @@
 			<!--资源上传管理-->
 			<distributionManagement>
 				<repository>
-					<id>kt-nexus-releases</id>
+					<id>kt-nexus</id>
 					<url>http://10.1.50.116:8082/nexus/content/repositories/releases</url>
 				</repository>
 				<snapshotRepository>
-					<id>kt-nexus-snapshots</id>
+					<id>kt-nexus</id>
 					<uniqueVersion>false</uniqueVersion>
 					<url>http://10.1.50.116:8082/nexus/content/repositories/snapshots</url>
 				</snapshotRepository>
@@ -677,7 +675,7 @@
 		<profile>
 			<id>release-kt2</id>
 			<properties>
-				<maven.boot.skip>true</maven.boot.skip>
+				<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
 				<maven.javadoc.skip>false</maven.javadoc.skip>
 				<maven.javadoc.failOnError>true</maven.javadoc.failOnError>
 				<maven.checkstyle.skip>false</maven.checkstyle.skip>
@@ -688,7 +686,6 @@
 				<plugins>
 					<!-- 使用插件：Source -->
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
 					</plugin>
 				</plugins>
@@ -696,11 +693,11 @@
 			<!--资源上传管理-->
 			<distributionManagement>
 				<repository>
-					<id>kt2-nexus-releases</id>
+					<id>kt2-nexus</id>
 					<url>http://10.1.51.186:8081/nexus/content/repositories/releases/</url>
 				</repository>
 				<snapshotRepository>
-					<id>kt2-nexus-snapshots</id>
+					<id>kt2-nexus</id>
 					<uniqueVersion>false</uniqueVersion>
 					<url>http://10.1.51.186:8081/nexus/content/repositories/snapshots/</url>
 				</snapshotRepository>
@@ -711,7 +708,7 @@
 		<profile>
 			<id>release-ossrh</id>
 			<properties>
-				<maven.boot.skip>true</maven.boot.skip>
+				<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
 				<maven.javadoc.skip>false</maven.javadoc.skip>
 				<maven.javadoc.failOnError>true</maven.javadoc.failOnError>
 				<maven.checkstyle.skip>false</maven.checkstyle.skip>
@@ -722,7 +719,6 @@
 				<plugins>
 					<!-- 使用插件：Source -->
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
 					</plugin>
 					<!-- 使用插件：Nexus-Staging -->
@@ -732,7 +728,6 @@
 					</plugin>
 					<!-- 使用插件：GPG -->
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
 					</plugin>
 				</plugins>
@@ -743,7 +738,7 @@
 		<profile>
 			<id>publish</id>
 			<properties>
-				<maven.boot.skip>true</maven.boot.skip>
+				<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
 				<maven.javadoc.skip>false</maven.javadoc.skip>
 				<maven.javadoc.failOnError>true</maven.javadoc.failOnError>
 				<maven.checkstyle.skip>false</maven.checkstyle.skip>
@@ -756,7 +751,6 @@
 				<plugins>
 					<!-- 使用插件：Source -->
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
 					</plugin>
 					<!-- 使用插件：Nexus-Staging -->
@@ -766,7 +760,6 @@
 					</plugin>
 					<!-- 使用插件：GPG -->
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
 					</plugin>
 				</plugins>
@@ -777,7 +770,7 @@
 		<profile>
 			<id>publish-auto</id>
 			<properties>
-				<maven.boot.skip>true</maven.boot.skip>
+				<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
 				<maven.javadoc.skip>false</maven.javadoc.skip>
 				<maven.javadoc.failOnError>true</maven.javadoc.failOnError>
 				<maven.checkstyle.skip>false</maven.checkstyle.skip>
@@ -791,7 +784,6 @@
 				<plugins>
 					<!-- 使用插件：Source -->
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
 					</plugin>
 					<!-- 使用插件：Nexus-Staging -->
@@ -801,7 +793,6 @@
 					</plugin>
 					<!-- 使用插件：GPG -->
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
 					</plugin>
 				</plugins>
