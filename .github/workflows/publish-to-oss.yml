@@ -20,8 +20,8 @@ jobs:
           distribution: 'zulu'
           java-version: 8
           server-id: ossrh
-          server-username: ${{ secrets.OSSRH_USER }}
-          server-password: ${{ secrets.OSSRH_PASSWORD }}
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
 
       # step 3
       - name: "Install GPG Secret Key"
@@ -31,4 +31,7 @@ jobs:
 
       # step 4
       - name: "Publish To OSS"
-        run: mvn clean deploy -Ppublish-auto --batch-mode -Dmaven.gpg.passphrase=${{ secrets.GPG_PASSPHRASE }} -e -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+        env:
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USER }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+        run: mvn clean deploy -Ppublish-auto --batch-mode -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} -e -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
