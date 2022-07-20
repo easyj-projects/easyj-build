@@ -31,4 +31,4 @@ jobs:
 
       # step 4
       - name: "Publish To OSS"
-        run: mvn clean deploy --batch-mode -Dmaven.gpg.passphrase=${{ secrets.GPG_PASSPHRASE }} -e -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+        run: mvn clean deploy -Ppublish-auto --batch-mode -Dmaven.gpg.passphrase=${{ secrets.GPG_PASSPHRASE }} -e -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
