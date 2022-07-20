@@ -7,17 +7,7 @@ on:
 jobs:
   publish:
     name: "Publish"
-
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [
-            #macos-latest,  #会报错
-            #ubuntu-latest, #会报错
-            windows-latest  #成功
-        ]
-
+    runs-on: ubuntu-latest
     steps:
       # step 1
       - name: "Checkout"
@@ -29,19 +19,16 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 8
+          server-id: ossrh
+          server-username: ${{ secrets.OSSRH_USER }}
+          server-password: ${{ secrets.OSSRH_PASSWORD }}
 
       # step 3
-      #- name: "Install GPG For MacOS"
-      #  if: startsWith(matrix.os, 'macos')
-      #  run: brew install gnupg
+      - name: "Install GPG Secret Key"
+        run: |
+          cat <(echo -e "${{ secrets.GPG_PRIVATE_KEY }}") | gpg --batch --import
+          gpg --list-secret-keys --keyid-format LONG
 
       # step 4
       - name: "Publish To OSS"
-        uses: samuelmeuli/action-maven-publish@v1.4.0
-        with:
-          nexus_username: ${{ secrets.OSSRH_USER }}
-          nexus_password: ${{ secrets.OSSRH_PASSWORD }}
-          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          gpg_passphrase: ${{ secrets.GPG_PASSPHRASE }}
-          maven_profiles: publish-auto
-          maven_goals_phases: clean deploy -e -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+        run: mvn clean deploy --batch-mode -Dmaven.gpg.passphrase=${{ secrets.GPG_PASSPHRASE }} -e -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
