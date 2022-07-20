@@ -119,8 +119,7 @@
 		<maven.gpg.keyname/>
 		<maven.gpg.passphrase/>
 		<maven.gpg.passphraseServerId/>
-		<maven.gpg.arg1/>
-		<maven.gpg.arg2/>
+		<maven.gpg.arg/>
 	</properties>
 
 	<url>https://easyj.icu</url>
@@ -489,8 +488,7 @@
 								<passphrase>${maven.gpg.passphrase}</passphrase>
 								<passphraseServerId>${maven.gpg.passphraseServerId}</passphraseServerId>
 								<gpgArguments>
-									<arg>${maven.gpg.arg1}</arg>
-									<arg>${maven.gpg.arg2}</arg>
+									<arg>${maven.gpg.arg}</arg>
 								</gpgArguments>
 							</configuration>
 						</execution>
@@ -744,8 +742,7 @@
 				<maven.checkstyle.skip>false</maven.checkstyle.skip>
 				<maven.checkstyle.failsOnError>true</maven.checkstyle.failsOnError>
 				<maven.checkstyle.failOnViolation>true</maven.checkstyle.failOnViolation>
-				<maven.gpg.arg1>--pinentry-mode</maven.gpg.arg1>
-				<maven.gpg.arg2>loopback</maven.gpg.arg2>
+				<maven.gpg.arg>--pinentry-mode loopback</maven.gpg.arg>
 			</properties>
 			<build>
 				<plugins>
@@ -777,8 +774,7 @@
 				<maven.checkstyle.failsOnError>true</maven.checkstyle.failsOnError>
 				<maven.checkstyle.failOnViolation>true</maven.checkstyle.failOnViolation>
 				<maven.staging.autoReleaseAfterClose>true</maven.staging.autoReleaseAfterClose>
-				<maven.gpg.arg1>--pinentry-mode</maven.gpg.arg1>
-				<maven.gpg.arg2>loopback</maven.gpg.arg2>
+				<maven.gpg.arg>--pinentry-mode loopback</maven.gpg.arg>
 			</properties>
 			<build>
 				<plugins>
