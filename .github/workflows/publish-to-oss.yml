@@ -20,8 +20,8 @@ jobs:
           distribution: 'zulu'
           java-version: 8
           server-id: ossrh
-          server-username: ${{ secrets.OSSRH_USERNAME }}
-          server-password: ${{ secrets.OSSRH_PASSWORD }}
+          server-username: OSSRH_USERNAME
+          server-password: OSSRH_PASSWORD
 
       # step 3
       - name: "Import GPG-SECRET-KEY"
@@ -30,5 +30,8 @@ jobs:
 
       # step 4
       - name: "Package and Publish-To-OSS"
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
         run: |
           mvn clean deploy -Ppublish-auto --batch-mode -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} -e -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
