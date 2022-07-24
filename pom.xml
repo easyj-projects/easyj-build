@@ -27,7 +27,7 @@
 		<!-- ********** maven-plugin Versions and Default configurations ********** -->
 
 		<!-- icu.easyj.maven.plugins : easyj-maven-plugin -->
-		<easyj-maven-plugin.version>1.0.5</easyj-maven-plugin.version>
+		<easyj-maven-plugin.version>1.0.6</easyj-maven-plugin.version>
 		<maven.simplify.simplifiedPomFileName>.flattened-pom.xml</maven.simplify.simplifiedPomFileName>
 		<maven.simplify.useTabIndent>true</maven.simplify.useTabIndent>
 
