@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.1.3-SNAPSHOT</version>
+	<version>1.1.3</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -27,7 +27,7 @@
 		<!-- ********** maven-plugin Versions and Default configurations ********** -->
 
 		<!-- icu.easyj.maven.plugins : easyj-maven-plugin -->
-		<easyj-maven-plugin.version>1.1.2</easyj-maven-plugin.version>
+		<easyj-maven-plugin.version>1.1.3</easyj-maven-plugin.version>
 		<maven.simplify.simplifiedPomFileName>.flattened-pom.xml</maven.simplify.simplifiedPomFileName>
 		<maven.simplify.useTabIndent>true</maven.simplify.useTabIndent>
 
@@ -299,6 +299,11 @@
 				<plugin>
 					<artifactId>maven-source-plugin</artifactId>
 					<version>${maven-source-plugin.version}</version>
+					<configuration>
+						<excludes>
+							<exclude>**/*.java.template</exclude>
+						</excludes>
+					</configuration>
 					<executions>
 						<execution>
 							<id>attach-sources</id>
