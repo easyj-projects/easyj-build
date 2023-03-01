@@ -791,6 +791,15 @@
 					<plugin>
 						<artifactId>maven-source-plugin</artifactId>
 					</plugin>
+					<!-- 使用插件：Nexus-Staging -->
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+					</plugin>
+					<!-- 使用插件：GPG -->
+					<plugin>
+						<artifactId>maven-gpg-plugin</artifactId>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
