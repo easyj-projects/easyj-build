@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.1.4</version>
+	<version>1.1.5</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -27,7 +27,7 @@
 		<!-- ********** maven-plugin Versions and Default configurations ********** -->
 
 		<!-- icu.easyj.maven.plugins : easyj-maven-plugin -->
-		<easyj-maven-plugin.version>1.1.4</easyj-maven-plugin.version>
+		<easyj-maven-plugin.version>1.1.5</easyj-maven-plugin.version>
 		<maven.simplify.simplifiedPomFileName>.flattened-pom.xml</maven.simplify.simplifiedPomFileName>
 		<maven.simplify.useTabIndent>true</maven.simplify.useTabIndent>
 
@@ -790,15 +790,6 @@
 					<!-- 使用插件：Source -->
 					<plugin>
 						<artifactId>maven-source-plugin</artifactId>
-					</plugin>
-					<!-- 使用插件：Nexus-Staging -->
-					<plugin>
-						<groupId>org.sonatype.plugins</groupId>
-						<artifactId>nexus-staging-maven-plugin</artifactId>
-					</plugin>
-					<!-- 使用插件：GPG -->
-					<plugin>
-						<artifactId>maven-gpg-plugin</artifactId>
 					</plugin>
 				</plugins>
 			</build>
