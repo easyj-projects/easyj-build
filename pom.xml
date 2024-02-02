@@ -6,7 +6,7 @@
 
 	<groupId>icu.easyj</groupId>
 	<artifactId>easyj-build</artifactId>
-	<version>1.1.5</version>
+	<version>1.1.6</version>
 	<packaging>pom</packaging>
 
 	<name>${project.groupId} :: ${project.artifactId}</name>
@@ -118,7 +118,7 @@
 		<maven.gpg.skip>${maven.deploy.skip}</maven.gpg.skip>
 		<maven.gpg.keyname/>
 		<maven.gpg.passphrase/>
-		<maven.gpg.passphraseServerId/>
+		<maven.gpg.passphraseServerId>${maven.staging.serverId}</maven.gpg.passphraseServerId>
 		<maven.gpg.arg1/>
 		<maven.gpg.arg2/>
 	</properties>
@@ -784,6 +784,38 @@
 				<maven.staging.autoReleaseAfterClose>true</maven.staging.autoReleaseAfterClose>
 				<maven.gpg.arg1>--pinentry-mode</maven.gpg.arg1>
 				<maven.gpg.arg2>loopback</maven.gpg.arg2>
+			</properties>
+			<build>
+				<plugins>
+					<!-- 使用插件：Source -->
+					<plugin>
+						<artifactId>maven-source-plugin</artifactId>
+					</plugin>
+					<!-- 使用插件：Nexus-Staging -->
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+					</plugin>
+					<!-- 使用插件：GPG -->
+					<plugin>
+						<artifactId>maven-gpg-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- profile: publish-myself -->
+		<profile>
+			<id>publish-myself</id>
+			<properties>
+				<spring-boot.repackage.skip>true</spring-boot.repackage.skip>
+				<maven.javadoc.skip>false</maven.javadoc.skip>
+				<maven.javadoc.failOnError>true</maven.javadoc.failOnError>
+				<maven.checkstyle.skip>false</maven.checkstyle.skip>
+				<maven.checkstyle.failsOnError>true</maven.checkstyle.failsOnError>
+				<maven.checkstyle.failOnViolation>true</maven.checkstyle.failOnViolation>
+				<maven.gpg.keyname>16B8123A512A667CDFF7B9ACB2258664E3A34C09</maven.gpg.keyname>
+				<!--<maven.gpg.passphrase></maven.gpg.passphrase>--><!-- 打包时通过命令添加参数：-Dmaven.gpg.passphrase=xxxyyy -->
 			</properties>
 			<build>
 				<plugins>
